@@ -286,7 +286,8 @@
                 </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Welcome Siswa
+                        Welcome <br>
+                         <?php echo $this->session->userdata('NM_WALSIS'); ?>
                     </div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
@@ -304,10 +305,22 @@
                 <ul class="list">
                     <li class="header">DATA UTAMA</li>
                     <li class="active">
-                        <a href="<?php echo base_url(); ?>index.php/dashboard">
+                        <a href="<?php echo base_url(); ?>index.php/walisiswa/dashboard">
                             <i class="material-icons">home</i>
                             <span>Home</span>
                         </a>
+                        <a href="<?php echo base_url(); ?>index.php/walisiswa/kehadiran_siswa">
+                            <i class="material-icons">assessment</i>
+                            <span>Presensi Siswa</span>
+                        </a>
+                        <a href="<?php echo base_url(); ?>index.php/walisiswa/sikap_siswa">
+                            <i class="material-icons">toc</i>
+                            <span>Nilai Sikap</span>
+                        </a><!-- 
+                        <a href="<?php echo base_url(); ?>index.php/dashboard">
+                            <i class="material-icons">timeline</i>
+                            <span>Grafik</span>
+                        </a> -->
                     </li>
                 
                   

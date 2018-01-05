@@ -85,6 +85,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   }
 
    public function login_walisiswa()
+   
   {
     $NIK  = $this->input->post('NIK');
     $NM_WALSIS = $this->input->post('NM_WALSIS');
@@ -95,8 +96,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     if($query->num_rows() > 0)
         {
+          $user = array_shift($query->result_array());
           $data = array (
-            'NIK' => $NIK,
+            'NIK' => $user['NIK'],
+            'NM_WALSIS' => $user['NM_WALSIS'],
             'logged_in' => TRUE);
 
          $this->session->set_userdata($data);
