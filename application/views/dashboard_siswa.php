@@ -79,14 +79,15 @@
                             <div  class="dashboard-flot-chart">
                                 
                             <div class="form-group">
-                                <br><br><br><br><br><br><br><br><br>
+                                <br><br><br><br><br><br>
 
-
+                            <form class="form-horizontal" action="<?php echo base_url();?>index.php/siswa/dashboard/masuk" method="post">
                             <label class="col-md-4 control-label" for="singlebutton"></label>
                             <div class="col-md-4">
-                           <button id="singlebutton" class="btn btn-danger center-block" style="height: 60px;width: 200px"> MASUK</button>
-                 </div>
-</div>
+                            <input type="submit" class="btn btn-danger center-block" style="height: 60px;width: 200px" value="MASUK" name="submit">
+                            </div>
+                            </form>
+                            </div>
                             </div>
                               <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                   

@@ -327,7 +327,7 @@
                     <li>
                         <a href="javascript:void(0);">
                             <i class="material-icons col-light-blue">donut_large</i>
-                            <span> - - - </span>
+                            <span>Lihat Sikap</span>
                         </a>
                 </ul>
             </div>
