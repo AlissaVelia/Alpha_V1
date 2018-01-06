@@ -26,7 +26,7 @@
                                     </div>
                                     <div class="form-group">
                                         
-                                        <input type="password" name="NIK" placeholder="PASSWORD" class="form-password form-control" id="form-password" >
+                                        <input type="password" name="KD_WALSIS" placeholder="PASSWORD" class="form-password form-control" id="form-password" >
                                     </div>
                                     <Input type="submit" name="submit" value="SIGN IN" class="btn btn-danger btn-block" >
                                 </form>

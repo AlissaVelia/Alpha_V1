@@ -297,6 +297,11 @@ class Admin_model extends CI_Model
 	{
 		return $this->db->get('tb_siswa')->result();
 	}
+
+	public function read_siswa_walisiswa($KD_WALSIS)
+	{
+		return $this->db->where('KD_WALSIS', $KD_WALSIS)->get('tb_siswa')->result();
+	}
     
     public function delete_siswa($NIS)
 	{

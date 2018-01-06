@@ -87,10 +87,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
    public function login_walisiswa()
    
   {
-    $NIK  = $this->input->post('NIK');
+    $KD_WALSIS  = $this->input->post('KD_WALSIS');
     $NM_WALSIS = $this->input->post('NM_WALSIS');
 
-    $query = $this->db->where('NIK', $NIK)
+    $query = $this->db->where('KD_WALSIS', $KD_WALSIS)
                ->where('NM_WALSIS', $NM_WALSIS)
                ->get('tb_walisiswa');
 
@@ -98,7 +98,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         {
           $user = array_shift($query->result_array());
           $data = array (
-            'NIK' => $user['NIK'],
+            'KD_WALSIS' => $user['KD_WALSIS'],
             'NM_WALSIS' => $user['NM_WALSIS'],
             'logged_in' => TRUE);
 

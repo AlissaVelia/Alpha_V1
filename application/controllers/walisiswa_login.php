@@ -21,7 +21,7 @@ public function __construct()
 		$this->load->view('login_walisiswa');
 		if($this->input->post('submit')) {
 
-			$this->form_validation->set_rules('NIK', 'NIK', 'trim|required');
+			$this->form_validation->set_rules('KD_WALSIS', 'KD_WALSIS', 'trim|required');
 			$this->form_validation->set_rules('NM_WALSIS', 'NM_WALSIS', 'trim|required');
 
 			if ($this->form_validation->run() == TRUE) {
@@ -41,7 +41,7 @@ public function __construct()
 	public function logout()
 	{
 		$data = array(
-				'NIK'	=> '',
+				'KD_WALSIS'	=> '',
 				'logged_in' => FALSE
 			);
 

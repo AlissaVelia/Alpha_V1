@@ -107,7 +107,7 @@
                             </tr>
                         </tbody>
                                 </table>
-                                <button id="singlebutton" class="btn btn-danger center-block" style="height: 60px;width: 200px"> KONFIRMASI</button>
+                                <a id="singlebutton" class="btn btn-danger center-block" style="height: 70px;width: 200px" href="<?php echo base_url('index.php/walisiswa/konfirmasi_siswa') ?>"> <br> KONFIRMASI SISWA </a>
                                 
                             </div>
                         </div>
