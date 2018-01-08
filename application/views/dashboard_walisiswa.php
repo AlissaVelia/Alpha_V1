@@ -81,21 +81,46 @@
                                     <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th style="text-align: center;">Kode Kelas </th>
-                                    <th style="text-align: center;">Nama Kelas</th>
-                                    <th style="text-align: center;">Jumlah Siswa</th>
-                                    <th style="text-align: center;">Aksi</th>
-                              
+                                    <th>Nama </th>
+                                    <th>NIS</th>
+                                    <th>Kelas</th>
+                                    <th>LAST ABSEN</th>
+                                    <th>Ijin</th>
+                                    <th>Sakit</th>
+                                    <th>Alpha</th>
+                                    <th>Masuk</th>
+                                    <th>Aksi</th>
+                                    
 
                                 </tr>
                             </thead>
 
                                 <!-- untuk menampilkan data ke halaman dari database -->
                             <tbody>
-                        
+                             <?php $no = 1;?>
+                        <?php foreach ($KD_WALSIS as $row):?>
                             <tr>
+                                <td><?php echo $no ?></td>
+                                <td><?php echo $row->NM_SISWA?></td>
+                                <td><?php echo $row->NIS?></td>
+                                <td><?php echo $row->KD_KELAS ?></td>
+                                <td><?php echo $row->LAST_ABSEN?></td>
+                                <td><?php echo $row->IJIN?></td>
+                                <td><?php echo $row->SAKIT ?></td>
+                                <td><?php echo $row->ALPA?></td>
+                                <td><?php echo $row->MASUK?></td>
+                                
+                                
+                              <td>
+                                <a href="<?php echo base_url(); ?>index.php/walisiswa/kehadiran_siswa/read_update?NIS=<?php echo $row->NIS ?>&LAST_ABSEN=<?php echo $row->LAST_ABSEN ?>" class="btn btn-info btn-xs" class="btn btn-info btn-xs">KONFIRMASI
+                                    </a></td>
+                                
+                            </tr>
+                            <?php $no++; ?>
+                        <?php endforeach; ?>
+                            <!-- <tr>
                                 <td></td>
-                                <td style="text-align: center;"></td>
+                               </td>
                                 <td style="text-align: center;"></td>
                                 <td style="text-align: center;"></td>
                                 
@@ -104,10 +129,9 @@
                                 </td>
                           
                                 
-                            </tr>
+                            </tr> -->
                         </tbody>
                                 </table>
-                                <a id="singlebutton" class="btn btn-danger center-block" style="height: 70px;width: 200px" href="<?php echo base_url('index.php/walisiswa/konfirmasi_siswa') ?>"> <br> KONFIRMASI SISWA </a>
                                 
                             </div>
                         </div>

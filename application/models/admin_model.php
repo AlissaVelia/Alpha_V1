@@ -25,10 +25,32 @@ class Admin_model extends CI_Model
 		}
 	}
 
+	public function insert_mapel()
+	{
+		$data = array(
+			'KD_MAPEL' => $this->input->post('KD_MAPEL'),
+			'NM_MAPEL' => $this->input->post('NM_MAPEL'));
+		$this->db->insert('tb_mapel', $data);
+		if($this->db->affected_rows() > 0)
+		{
+			return TRUE;
+		}
+		else {
+			return FALSE;
+		}
+	}
+
+
+
 	public function read_kelas()
 	{
 		return $this->db->get('tb_kelas')->result();
 	}
+	public function read_mapel()
+	{
+		return $this->db->get('tb_mapel')->result();
+	}
+  
     
     public function delete_kelas($KD_KELAS)
 	{
@@ -45,11 +67,31 @@ class Admin_model extends CI_Model
 		}
 	}
 
+	public function delete_mapel($KD_MAPEL)
+	{
+			$this->db->where('KD_MAPEL', $KD_MAPEL)
+			 ->delete('tb_mapel');
+
+		if($this->db->affected_rows()> 0)
+	 	{
+			return TRUE;
+	 	}
+		else
+		{
+	 		return FALSE;
+		}
+	}
+
      public function get_kelas_by_id($KD_KELAS) 
 	 {
 	  return $this->db->where('KD_KELAS', $KD_KELAS)->get('tb_kelas')->row();
 	 }
     
+      public function get_mapel_by_id($KD_MAPEL) 
+	 {
+	  return $this->db->where('KD_MAPEL', $KD_MAPEL)->get('tb_mapel')->row();
+	 }
+
      public function update_kelas($KD_KELAS)
 		{
 			
@@ -74,68 +116,17 @@ class Admin_model extends CI_Model
 
 
 
-	public function insert_mapel()
-	{
-		$data = array(
-			'KD_MAPEL' => $this->input->post('KD_MAPEL'),
-			'NM_MAPEL' => $this->input->post('NM_MAPEL'));
-		$this->db->insert('tb_mapel', $data);
-		if($this->db->affected_rows() > 0)
-		{
-			return TRUE;
-		}
-		else {
-			return FALSE;
-		}
-	}
+	
 
 
-    public function read_mapel()
-	{
-		return $this->db->get('tb_mapel')->result();
-	}
-  
+    
 
-		public function delete_mapel($KD_MAPEL)
-	{
-			$this->db->where('KD_MAPEL', $KD_MAPEL)
-			 ->delete('tb_mapel');
+	
 
-		if($this->db->affected_rows()> 0)
-	 	{
-			return TRUE;
-	 	}
-		else
-		{
-	 		return FALSE;
-		}
-	}
-
-	 public function get_mapel_by_id($KD_MAPEL) 
-	 {
-	  return $this->db->where('KD_MAPEL', $KD_MAPEL)->get('tb_mapel')->row();
-	}
+	
 //untuk melakukan Create, pertama kali kita buat method ini untuk inisialisasi database
 
-	 public function update_mapel($KD_MAPEL)
-		{
-			
-			$data = array(
-				//'KD_KELAS' => $this->input->post('KD_KELAS'),
-			'NM_MAPEL' => $this->input->post('NM_MAPEL'));
-			$this->db->where('KD_MAPEL', $KD_MAPEL)
-					 ->update('tb_mapel', $data);
-					 
-			if($this->db->affected_rows() > 0)
-			{
-				return TRUE;
-			}
-			else
-			 {
-				return FALSE;
-			}
-		}
-
+	
 	
 	public function insert_guru()
 	{
@@ -238,6 +229,7 @@ class Admin_model extends CI_Model
 	 {
 	  return $this->db->where('KD_WALSIS', $KD_WALSIS)->get('tb_walisiswa')->row();
 	 }
+
     
      public function update_walisiswa($KD_WALSIS)
 		{
@@ -297,11 +289,105 @@ class Admin_model extends CI_Model
 	{
 		return $this->db->get('tb_siswa')->result();
 	}
+	public function read_ksiswa()
+	{
+		return $this->db->get('tb_kehadiran')->result();
+	}
+
+	public function update_kehadiran_siswa($NIS)
+		{
+			
+			$data = array(
+			//'KD_WALSIS' => $this->input->post('KD_WALSIS'),
+			
+			'IJIN' => $this->input->post('IJIN'));
+			$this->db->where('NIS', $NIS)
+					 ->update('tb_kehadiran', $data);
+					 
+			if($this->db->affected_rows() > 0)
+			{
+				return TRUE;
+			}
+			else
+			 {
+				return FALSE;
+			}
+		}
+
+	public function get_kehadiran_by_id($NIS)
+	{
+		return $this->db->where('NIS', $NIS)->get('tb_kehadiran')->row();
+	}
 
 	public function read_siswa_walisiswa($KD_WALSIS)
 	{
-		return $this->db->where('KD_WALSIS', $KD_WALSIS)->get('tb_siswa')->result();
+
+		return $this->db->where('KD_WALSIS', $KD_WALSIS)
+						->select('*')
+						->join('tb_kehadiran', "tb_kehadiran.NIS=tb_siswa.NIS")
+						->group_by('NM_SISWA')
+						->order_by('LAST_ABSEN', 'DESC')
+						->get('tb_siswa')
+						->result();
 	}
+	public function read_kehadiran_siswa($NIS)
+	{
+
+		return $this->db->where('NIS', $NIS)
+						->order_by('IJIN', 'DESC')
+						->order_by('SAKIT', 'DESC')	
+						->order_by('ALPA', 'DESC')
+						->get('tb_kehadiran')
+						->result();
+	}
+
+    public function read_kehadiran_walisiswa($KD_WALSIS)
+	{
+		// return $this->db->where('KD_WALSIS', $KD_WALSIS)
+		// 				->select('*')
+		// 				->join('tb_kehadiran', "tb_kehadiran.NIS=tb_siswa.NIS")
+				        
+		// 				->order_by('LAST_ABSEN', 'DESC')
+		// 				->get('tb_siswa')
+		// 				->result();
+		$kueri = "SELECT * FROM v_kehadiran_siswa WHERE KD_WALSIS = $KD_WALSIS ORDER BY KELAS";
+				 
+		$query = $this->db->query($kueri);
+		$row = $query->result();
+		if (isset($row))
+        {
+			return $row;
+			//return TRUE;
+		}
+		else
+		 {
+			return FALSE;
+		}
+
+	}
+
+	public function read_sikap_siswa($KD_WALSIS)
+	{
+
+		// $kueri = $this->db->query("SELECT * FROM v_sikap_siswa WHERE KD_WALSIS = $KD_WALSIS");
+		// // 'SELECT * FROM v_sikap_siswa WHERE KD_WALSIS = $KD_WALSIS';
+		// return $query;
+
+		$kueri = "SELECT * FROM v_sikap_siswa WHERE KD_WALSIS = $KD_WALSIS ORDER BY KELAS ASC";
+				 
+		$query = $this->db->query($kueri);
+		$row = $query->result();
+		if (isset($row))
+        {
+			return $row;
+			//return TRUE;
+		}
+		else
+		 {
+			return FALSE;
+		}
+	}
+	
     
     public function delete_siswa($NIS)
 	{

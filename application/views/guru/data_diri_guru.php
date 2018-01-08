@@ -30,7 +30,7 @@
                                     <th>Nama Guru</th>
                                     <th>NIK</th>
                                     <th>Aksi</th>
-                              
+                               
 
                                 </tr>
                             </thead>

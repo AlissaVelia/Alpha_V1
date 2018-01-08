@@ -23,30 +23,39 @@
                                       <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama </th>
-                                    <th>Kelas</th>
-                                    <th>Tgl</th>
+                                    <th>NIS </th>
+                                    <th>NAMA</th>
                                     <th>Ijin</th>
                                     <th>Sakit</th>
                                     <th>Alpha</th>
-                                    <th>Masuk</th>
+                                    <th>Detail</th>
                               
 
                                 </tr>
                             </thead>
 
                                 <!-- untuk menampilkan data ke halaman dari database -->
-                            <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                            <tbody>       <?php $no = 1;?>
+                        <?php foreach ($KD_WALSIS as $row):?>
+                            <tr>
+                                <td><?php echo $no ?></td>
+                                <td><?php echo $row->NIS?></td>
+                                <td><?php echo $row->NAMA?></td>
+                                <td ><?php echo $row->JML_IJIN ?></td>
+                                <td ><?php echo $row->JML_SAKIT ?></td>
+                                <td ><?php echo $row->JML_ALPA ?></td>
+                                
+                                </td>
+                                 <td>
+                                    <a href="<?php echo base_url(); ?>index.php/walisiswa/kehadiran_siswa/lihat/<?php echo $row->NIS;?>" class="btn btn-info btn-xs" class="btn btn-info btn-xs">LIHAT
+                                    </a>
+                                  
+                                </td>
+                          
+                                
+                            </tr>
+                            <?php $no++; ?>
+                        <?php endforeach; ?>
                         </tbody>
                                 </table>
                                  <button id="singlebutton" class="btn btn-danger center-block" style="height: 40px;width: 160px"> KONFIRMASI</button>

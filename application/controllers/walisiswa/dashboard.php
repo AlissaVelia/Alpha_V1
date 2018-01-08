@@ -12,9 +12,9 @@ class Dashboard extends CI_Controller {
 	{
 		
 		if($this->session->userdata('logged_in') == TRUE){
-
+		$KD_WALSIS = $this->session->userdata('KD_WALSIS'); 
 		$data['main_view'] = 'dashboard_walisiswa';		
-					
+		$data['KD_WALSIS'] = $this->admin_model->read_siswa_walisiswa($KD_WALSIS);	
 		$NIK = $this->session->userdata('NIK'); 
 		$this->load->view('template_walisiswa', $data);
 

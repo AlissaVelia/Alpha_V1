@@ -15,31 +15,41 @@
                         <div class="body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable">
-                                      <thead>
+                                    <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama </th>
-                                    <th>Kelas</th>
+                                    <th>NIS</th>
+                                    <th>Nama</th>
+                                    <th>Walsis</th>
+                                    <th>Kelas</th>        
                                     <th>Bind</th>
-                                    <th>Bing</th>
+                                    <th>Bing</th> 
                                     <th>PWD</th>
+                              
 
                                 </tr>
                             </thead>
 
                                 <!-- untuk menampilkan data ke halaman dari database -->
                             <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                        <?php $no = 1;?>
+                        <?php foreach ($KD_WALSIS as $row):?>
+                            <tr>
+                                <td><?php echo $no ?></td>
+                                <td><?php echo $row->NIS?></td>
+                                <td><?php echo $row->NAMA ?></td>
+                                <td><?php echo $row->KD_WALSIS?></td>
+                                <td><?php echo $row->KELAS?></td>
+                                <td><?php echo $row->BIND?></td>
+                                <td><?php echo $row->BING?></td>
+                                <td><?php echo $row->PWD?></td>
+                           
+                                
+                            </tr>
+                            <?php $no++; ?>
+                        <?php endforeach; ?>
                         </tbody>
                                 </table>
-                                
                             </div>
                         </div>
                     </div>
