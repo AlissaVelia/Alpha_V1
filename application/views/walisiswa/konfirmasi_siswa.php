@@ -77,7 +77,7 @@
                               
                                 <div class="row clearfix">
                                     <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
-                                           <a class="btn btn-info" href="<?php echo base_url('index.php/data/data_siswa') ?>">Back</a>
+                                           <a class="btn btn-info" href="<?php echo base_url('index.php/walisiswa/dashboard') ?>">Back</a>
                                 <input type="submit" class="btn btn-success" value="Submit" name="submit">
                                 <input type="reset" class="btn btn-danger" value="Reset">
                                     </div>

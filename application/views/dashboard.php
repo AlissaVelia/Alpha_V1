@@ -13,8 +13,10 @@
                             <i class="material-icons">playlist_add_check</i>
                         </div>
                         <div class="content">
+                         
                             <div class="text">KELAS</div>
-                            <div>3</div>
+                             <div>5</div>
+                            <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>

@@ -25,6 +25,7 @@
                                     <th>No</th>
                                     <th>NIS </th>
                                     <th>NAMA</th>
+                                    <th>KELAS</th>
                                     <th>Ijin</th>
                                     <th>Sakit</th>
                                     <th>Alpha</th>
@@ -41,6 +42,7 @@
                                 <td><?php echo $no ?></td>
                                 <td><?php echo $row->NIS?></td>
                                 <td><?php echo $row->NAMA?></td>
+                                <td><?php echo $row->KELAS?></td>
                                 <td ><?php echo $row->JML_IJIN ?></td>
                                 <td ><?php echo $row->JML_SAKIT ?></td>
                                 <td ><?php echo $row->JML_ALPA ?></td>
@@ -58,7 +60,7 @@
                         <?php endforeach; ?>
                         </tbody>
                                 </table>
-                                 <button id="singlebutton" class="btn btn-danger center-block" style="height: 40px;width: 160px"> KONFIRMASI</button>
+                               
                                 
                             </div>
                         </div>

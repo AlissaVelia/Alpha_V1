@@ -12,8 +12,11 @@ class Dashboard extends CI_Controller {
 	{
 		
 		if($this->session->userdata('logged_in') == TRUE){
-		$data['main_view'] = 'dashboard';
+
+		$data['kls'] = $this->admin_model->jumlah_kelas();	
+		
 		$data['list'] = $this->admin_model->jumlah_siswa();
+		$data['main_view'] = 'dashboard';
 		$this->load->view('template_view', $data);
 
 		}

@@ -17,6 +17,8 @@ class Kehadiran_siswa extends CI_Controller {
 	    $KD_WALSIS = $this->session->userdata('KD_WALSIS'); 
 		$data['main_view'] = 'walisiswa/kehadiran_siswa';
 		$data['KD_WALSIS'] = $this->admin_model->read_kehadiran_walisiswa($KD_WALSIS);			
+		//COUNT PER DAY
+		//$data['list'] = $this->admin_model->count_kehadiran_siswa_harian($KD_WALSIS);		
 		$this->load->view('template_walisiswa', $data);
 
 		}else{
@@ -39,7 +41,7 @@ class Kehadiran_siswa extends CI_Controller {
 				$data['main_view'] = 'walisiswa/update_kehadiran_siswa';		
 				$NIS = $this->input->get('NIS');
 				$LAST_ABSEN	 = $this->input->get('LAST_ABSEN');
-				$data['list'] = $this->admin_model->get_kehadiran_by_id($NIS);
+				$data['list'] = $this->admin_model->get_kehadiran_by_id($NIS,$LAST_ABSEN);
 				$data['list1'] = $this->admin_model->get_siswa_by_id($NIS);
 				$data['NIS'] = $this->admin_model->read_kehadiran_siswa($NIS);
 				$data['LAST_ABSEN'] = $this->admin_model->read_kehadiran_siswa($NIS);
@@ -57,17 +59,16 @@ class Kehadiran_siswa extends CI_Controller {
 			{
 			//$this->form_validation->set_rules('KD_GURU', 'Kode Guru', 'trim|required');	
 		 	//$this->form_validation->set_rules('LAST_ABSEN', 'LAST_ABSEN', 'trim|required');	
-		 	$this->form_validation->set_rules('IJIN', 'IJIN', 'trim|required');	
-				if($this->form_validation->run()==TRUE)
-				{
-					if($this->walsis_model->update_ijin($NIS, $LAST_ABSEN	) == TRUE)
+				if( $this->input->post('kehadiran') == 'ijin' && 
+					$this->walsis_model->update_ijin($NIS, $LAST_ABSEN	) == TRUE)
 					{
 						$data['main_view'] = 'walisiswa/update_kehadiran_siswa';
 						$data['notif'] = 'berhasil';
 						$this->load->view('template_walisiswa', $data);
 						redirect('walisiswa/dashboard');
 					}
-					else if ($this->walsis_model->update_sakit($NIS, $LAST_ABSEN	) == TRUE)
+					else if (  $this->input->post('kehadiran') == 'sakit' && 
+						$this->walsis_model->update_sakit($NIS, $LAST_ABSEN	) == TRUE)
 					{
 						$data['main_view'] = 'walisiswa/update_kehadiran_siswa';
 						$data['notif'] = 'berhasil';
@@ -75,7 +76,8 @@ class Kehadiran_siswa extends CI_Controller {
 						redirect('walisiswa/dashboard');
 					}
 
-					else if ($this->walsis_model->update_alpa($NIS, $LAST_ABSEN	) == TRUE)
+					else if (  $this->input->post('kehadiran') == 'alpa' && 
+						$this->walsis_model->update_alpa($NIS, $LAST_ABSEN	) == TRUE)
 					{
 						$data['main_view'] = 'walisiswa/update_kehadiran_siswa';
 						$data['notif'] = 'berhasil';
@@ -88,12 +90,7 @@ class Kehadiran_siswa extends CI_Controller {
 						$data['notif'] = 'gagal';
 						$this->load->view('template_walisiswa', $data);
 					}
-				} else
-				{
-					$data['main_view'] = 'walisiswa/update_kehadiran_siswa';
-						$data['notif'] = validation_errors();
-						$this->load->view('template_walisiswa', $data);
-				}
+
 			}
 	}
 

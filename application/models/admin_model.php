@@ -314,31 +314,71 @@ class Admin_model extends CI_Model
 			}
 		}
 
-	public function get_kehadiran_by_id($NIS)
+	public function get_kehadiran_by_id($NIS, $LAST_ABSEN)
 	{
-		return $this->db->where('NIS', $NIS)->get('tb_kehadiran')->row();
+		return $this->db->where('NIS', $NIS)->where('LAST_ABSEN', $LAST_ABSEN)->get('tb_kehadiran')->row();
 	}
 
 	public function read_siswa_walisiswa($KD_WALSIS)
 	{
 
-		return $this->db->where('KD_WALSIS', $KD_WALSIS)
-						->select('*')
-						->join('tb_kehadiran', "tb_kehadiran.NIS=tb_siswa.NIS")
-						->group_by('NM_SISWA')
-						->order_by('LAST_ABSEN', 'DESC')
-						->get('tb_siswa')
-						->result();
+		// return $this->db->where('KD_WALSIS', $KD_WALSIS)
+		// 				->select('*')
+		// 				->SELECT_MAX('LAST_ABSEN')
+		// 				->join('tb_kehadiran', "tb_kehadiran.NIS=tb_siswa.NIS")
+		// 				// ->GROUP_by('NM_SISWA') 
+		// 				->get('tb_siswa')
+		// 				->result();
+
+		//BARU//
+		// $kueri =  
+ 	// 	// 	"SELECT TS.NM_SISWA, TS.KD_KELAS,TS.KD_WALSIS, TKL.NM_KELAS, TK.NIS, TK.IJIN, TK.SAKIT, TK.ALPA, TK.MASUK, TK.KD_KEHADIRAN, TK.LAST_ABSEN, " .
+ 	// 	// 	" MAX(TK.KD_KEHADIRAN) AS KD_KEHADIRAN		  " .
+		// 	// " FROM tb_siswa TS, tb_kehadiran TK, tb_kelas TKL " .
+		// 	// " WHERE TS.NIS = TK.NIS AND TS.KD_KELAS = TKL.KD_KELAS " .
+		// 	// " AND TS.KD_WALSIS = '".$KD_WALSIS."' " .
+		// 	// " GROUP BY TK.NIS, TS.NIS ORDER BY TK.IJIN, TK.SAKIT, TK.ALPA, TK.MASUK DESC";
+
+		
+		// $kueri = "SELECT TS.NM_SISWA, TS.KD_KELAS,TS.KD_WALSIS, TK.NIS, TK.IJIN, TK.SAKIT, TK.ALPA, TK.MASUK, TK.KD_KEHADIRAN, TK.LAST_ABSEN
+		// FROM tb_siswa TS, tb_kehadiran TK
+		// WHERE TS.NIS = TK.NIS AND TS.KD_KELAS = TKL.KD_KELAS AND TS.KD_WALSIS = '".$KD_WALSIS."'
+  //       GROUP BY NIS";
+
+        $kueri1 = "SELECT * FROM tb_kehadiran INNER JOIN tb_siswa on tb_siswa.NIS = tb_kehadiran.NIS WHERE tb_kehadiran.KD_KEHADIRAN IN(SELECT MAX(KD_KEHADIRAN)
+ 					FROM tb_kehadiran GROUP BY NIS) AND tb_siswa.KD_WALSIS = $KD_WALSIS ";
+		
+
+		$query = $this->db->query($kueri1);
+		$row = $query->result();
+		if (isset($row))
+        {
+			return $row;
+			//return TRUE;
+		}
+		else
+		 {
+			return FALSE;
+		}
 	}
 	public function read_kehadiran_siswa($NIS)
 	{
 
-		return $this->db->where('NIS', $NIS)
-						->order_by('IJIN', 'DESC')
-						->order_by('SAKIT', 'DESC')	
-						->order_by('ALPA', 'DESC')
-						->get('tb_kehadiran')
-						->result();
+		 $kueri1 = "SELECT * FROM tb_kehadiran INNER JOIN tb_siswa on tb_siswa.NIS = tb_kehadiran.NIS WHERE tb_siswa.NIS = $NIS AND MASUK <> 1 ORDER BY IJIN DESC , SAKIT DESC, ALPA DESC ";
+		
+
+		$query = $this->db->query($kueri1);
+		$row = $query->result();
+		if (isset($row))
+        {
+			return $row;
+			//return TRUE;
+		}
+		else
+		 {
+			return FALSE;
+		}
+		
 	}
 
     public function read_kehadiran_walisiswa($KD_WALSIS)
@@ -496,7 +536,30 @@ class Admin_model extends CI_Model
 		 {
 			return FALSE;
 		}
+
 		}
+
+		public function count_kehadiran_siswa_harian($KD_WALSIS)
+		{
+
+		$kueri1 = "SELECT COUNT(*) FROM tb_kehadiran INNER JOIN tb_siswa on tb_siswa.NIS = tb_kehadiran.NIS WHERE tb_kehadiran.KD_KEHADIRAN IN(SELECT MAX(KD_KEHADIRAN)
+ 					FROM tb_kehadiran GROUP BY NIS) AND tb_siswa.KD_WALSIS = $KD_WALSIS ";
+
+		$query = $this->db->query($kueri1);
+		$row = $query->result();
+		if (isset($row))
+        {
+			return $row;
+			//return TRUE;
+		}
+		else
+		 {
+			return FALSE;
+		}
+		
+		}
+
+
 
 		public function jumlah_siswa()
 		{
@@ -516,8 +579,29 @@ class Admin_model extends CI_Model
 
 		}
     	
-	}
+		}
 
+		public function jumlah_kelas()
+		{
+
+		 $query = $this->db->query("SELECT COUNT(*) FROM tb_kelas");
+    				return $query->num_rows();
+
+		// 	$kueri = "SELECT count(*) FROM tb_kelas ";
+		// 	$query = $this->db->query($kueri);
+		// $row = $query->result();
+		// if (isset($row))
+  //       {
+		// 	return $row;
+		// 	//return TRUE;
+		// }
+		// else
+		//  {
+		// 	return FALSE;
+		// }
+		}
+
+        
 }
 
 	

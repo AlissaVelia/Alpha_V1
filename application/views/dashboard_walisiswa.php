@@ -24,7 +24,9 @@
                             <i class="material-icons">help</i>
                         </div>
                         <div class="content">
+                              
                             <div class="text">SAKIT</div>
+                         
                             <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
@@ -82,8 +84,9 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama </th>
+                                    <th>KODE</th>
                                     <th>NIS</th>
-                                    <th>Kelas</th>
+                                   <!--  <th>Kelas</th> -->
                                     <th>LAST ABSEN</th>
                                     <th>Ijin</th>
                                     <th>Sakit</th>
@@ -101,9 +104,11 @@
                         <?php foreach ($KD_WALSIS as $row):?>
                             <tr>
                                 <td><?php echo $no ?></td>
-                                <td><?php echo $row->NM_SISWA?></td>
-                                <td><?php echo $row->NIS?></td>
-                                <td><?php echo $row->KD_KELAS ?></td>
+                                <td><?php echo $row->NM_SISWA?><!-- 
+                                <td><?php echo $row->KD_WALSIS?></td> --> 
+                                <td><?php echo $row->KD_KEHADIRAN?></td>
+                                <td><?php echo $row->NIS?></td><!-- 
+                                <td><?php echo $row->KD_KELAS?></td> -->
                                 <td><?php echo $row->LAST_ABSEN?></td>
                                 <td><?php echo $row->IJIN?></td>
                                 <td><?php echo $row->SAKIT ?></td>
