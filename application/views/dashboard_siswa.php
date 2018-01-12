@@ -68,7 +68,10 @@
                         <div class="header  bg-red">
                             <div class="row clearfix form_datetime" >
                                 <div class="col-xs-12 col-sm-6"> 
-                                    <h2>Jumat, 28 Desember 2017 <?php echo $this->session->userdata('now');?></h2>
+                                <h2><?php
+                                    echo hari();
+                                    echo tanggal();
+                                ?></h2>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 align-right">
                                   

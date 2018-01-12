@@ -36,17 +36,14 @@ class Dashboard extends CI_Controller {
 
 		if($this->siswa_model->masuk($NIS) == TRUE)
 				{
-					$data['main_view'] = 'dashboard_siswa';		
+						
 					$data['notif'] = 'Anda Berhasil Absen!';
-					$data['list'] = $this->admin_model->count_kehadiran_siswa($NIS);
-					$this->load->view('template_siswa', $data);
+					redirect('siswa/dashboard');
 				}
 				else
 				{
-					$data['main_view'] = 'dashboard_siswa';		
 					$data['notif'] = 'Anda Sudah Absen Hari Ini!';
-					$data['list'] = $this->admin_model->count_kehadiran_siswa($NIS);
-					$this->load->view('template_siswa', $data);
+					redirect('siswa/dashboard');
 				}
 		}
 	}
