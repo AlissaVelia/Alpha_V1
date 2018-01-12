@@ -13,9 +13,9 @@
                             <i class="material-icons">playlist_add_check</i>
                         </div>
                         <div class="content">
-                         
+                        
                             <div class="text">KELAS</div>
-                             <div>5</div>
+                            <?php echo $kls;?>
                             <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                         </div>
                         <div class="content">
                             <div class="text">SISWA</div>
-                            <div>5</div>
+                            <?php echo $siswa?>
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                         </div>
                          <div class="content">
                             <div class="text">Guru</div>
-                            <div>5</div>
+                            <?php echo $guru;?>
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="content">
                             <div class="text">WALISISWA</div>
-                            <div>2</div>
+                            <?php echo $walsis;?>
                         </div>
                     </div>
                 </div>

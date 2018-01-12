@@ -11,8 +11,6 @@ class Siswa_model extends CI_Model {
 
   public function masuk($NIS){
   	//$tanggal = $this->db->where('KD_KELAS', $KD_KELAS)->get('tb_kehadiran')->row();
-  	
-
   	//if ($tanggal == $tanggalabsen) {
   	//		return FALSE;
 	//	}
@@ -23,18 +21,27 @@ class Siswa_model extends CI_Model {
 			'MASUK' => '1',
 			'IJIN' => '0',
 			'SAKIT' => '0',
-			'ALPA' => '0');
+			'ALPA' => '0',
+			'LAST_ABSEN' => $now);
 		$this->db->insert('tb_kehadiran', $data);
-		if($this->db->affected_rows() > 0)
+			if($this->db->affected_rows() > 0)
 		{
+
 			return TRUE;
 		}
 		else {
 			return FALSE;
   	}
+
+  	
+		
   	
   //}
 }
+
+	
+
+
 
 }
 

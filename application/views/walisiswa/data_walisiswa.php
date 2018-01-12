@@ -14,6 +14,11 @@
                          
 
                         </div>
+                        <?php
+                          $notif = $this->session->flashdata('notif');
+                          if (!empty($notif))
+                            echo "<div class='alert alert-info alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>$notif</div>";
+                          ?>
                         <div class="body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable">

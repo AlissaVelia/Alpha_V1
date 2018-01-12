@@ -28,13 +28,13 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function masuk(){
+			
 
 		if($this->input->post('submit'))
 		{
-
+		
 		$NIS = $this->session->userdata('NIS');
-
-		if($this->siswa_model->masuk($NIS) == TRUE)
+			if($this->siswa_model->masuk($NIS) == TRUE)
 				{
 					$data['main_view'] = 'dashboard_siswa';		
 					$data['notif'] = 'Anda Berhasil Absen!';
@@ -48,11 +48,16 @@ class Dashboard extends CI_Controller {
 					$data['list'] = $this->admin_model->count_kehadiran_siswa($NIS);
 					$this->load->view('template_siswa', $data);
 				}
+
+		
+		
+		
 		}
+		}
+		
 	}
 
 
-}
 
 /* End of file dashboard_siswa.php */
 /* Location: ./application/controllers/dashboard_siswa.php */

@@ -24,9 +24,9 @@
                             <i class="material-icons">help</i>
                         </div>
                         <div class="content">
-                              
+                            
                             <div class="text">SAKIT</div>
-                         
+                           <?php print_r($sakit);?>
                             <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
@@ -38,6 +38,7 @@
                         </div>
                         <div class="content">
                             <div class="text">IJIN</div>
+                             <?php print_r($ijin);?>
                             <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
@@ -49,6 +50,7 @@
                         </div>
                         <div class="content">
                             <div class="text">ALPA</div>
+                            <?php print_r($alpa);?>
                             <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
@@ -60,6 +62,7 @@
                         </div>
                         <div class="content">
                             <div class="text">MASUK</div>
+                            <?php print_r($masuk);?>
                             <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>

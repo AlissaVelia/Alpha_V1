@@ -18,7 +18,6 @@ class Kehadiran_siswa extends CI_Controller {
 		$data['main_view'] = 'walisiswa/kehadiran_siswa';
 		$data['KD_WALSIS'] = $this->admin_model->read_kehadiran_walisiswa($KD_WALSIS);			
 		//COUNT PER DAY
-		//$data['list'] = $this->admin_model->count_kehadiran_siswa_harian($KD_WALSIS);		
 		$this->load->view('template_walisiswa', $data);
 
 		}else{

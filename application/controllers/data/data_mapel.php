@@ -44,7 +44,7 @@ class Data_mapel extends CI_Controller {
 		}
 			} else
 			{
-				$data['main_view'] = 'mapel/tambah_mapel';
+				$data['main_view'] = 'data/data_mapel';
 					$data['notif'] = validation_errors();
 					$this->load->view('template_view', $data);
 			}
