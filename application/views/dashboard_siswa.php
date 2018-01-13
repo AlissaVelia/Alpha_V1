@@ -68,7 +68,10 @@
                         <div class="header  bg-red">
                             <div class="row clearfix form_datetime" >
                                 <div class="col-xs-12 col-sm-6"> 
-                                    <h2><?php date_default_timezone_set("Asia/Bangkok"); echo date('D, d M Y', time());?></h2>
+                                <h2><?php
+                                    echo hari();
+                                    echo tanggal();
+                                ?></h2>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 align-right">
                                   
