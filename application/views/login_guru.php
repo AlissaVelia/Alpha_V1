@@ -25,7 +25,7 @@
                                         
                                         <input type="password" name="NIK" placeholder="PASSWORD" class="form-password form-control" id="form-password" >
                                     </div>
-                                    <Input type="submit" name="submit" value="SIGN IN" class="btn btn-danger btn-block" >
+                                    <input type="submit" name="submit" value="SIGN IN" class="btn btn-danger btn-block" >
                                 </form>
     </div>
     

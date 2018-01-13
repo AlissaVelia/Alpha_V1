@@ -24,7 +24,7 @@ class Data_kelas extends CI_Controller {
 
 	public function hapus()
 	{
-		$KD_KELAS = $this->input->get('rcgn');
+		$KD_KELAS = $this->uri->segment(4);
 		if($this->admin_model->delete_kelas($KD_KELAS) == TRUE)
 		{
 			$this->session->set_flashdata('notif', 'Hapus data berhasil');

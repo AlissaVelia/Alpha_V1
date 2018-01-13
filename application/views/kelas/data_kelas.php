@@ -48,7 +48,7 @@
                                     <a href="<?php echo base_url(); ?>index.php/data/data_kelas/lihat/<?php echo $row->KD_KELAS;?>" class="btn btn-info btn-xs" class="btn btn-info btn-xs">
                                          Edit
                                     </a>
-                                    <a href="<?php echo base_url() ?>index.php/data/data_kelas/hapus?rcgn=<?php echo $row->KD_KELAS ?>" onclick="return confirm('Are you sure want to delete this file?')" class=" btn btn-danger btn-xs">
+                                    <a href="<?php echo base_url() ?>index.php/data/data_kelas/hapus/<?php echo $row->KD_KELAS ?>" onclick="return confirm('Are you sure want to delete this file?')" class=" btn btn-danger btn-xs">
                                         Delete
                                     </a>
                                 </td>

@@ -68,7 +68,7 @@
                                 <td>
                                     <a href="<?php echo base_url(); ?>index.php/data/data_siswa/lihat/<?php echo $row->NIS;?>" class="btn btn-info btn-xs" class="btn btn-info btn-xs">Edit
                                     </a>
-                                    <a href="<?php echo base_url() ?>index.php/data/data_siswa/hapus?rcgn=<?php echo $row->NIS ?>" onclick="return confirm('Are you sure want to delete this file?')" class=" btn btn-danger btn-xs">
+                                    <a href="<?php echo base_url() ?>index.php/data/data_siswa/hapus/<?php echo $row->NIS ?>" onclick="return confirm('Are you sure want to delete this file?')" class=" btn btn-danger btn-xs">
                                         Delete
                                     </a>
                                 </td>
