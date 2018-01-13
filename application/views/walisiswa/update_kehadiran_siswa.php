@@ -69,14 +69,14 @@
                           <div class="body">
                             <div class="row clearfix">
                                 <div class="col-sm-6">
-                                   <input type="radio" id="radio_1" class="with-gap radio-col-cyan" name="IJIN" value="1"<?php echo $list->IJIN=='1'?'checked':''; ?>>
+                                   <input type="radio" id="radio_1" class="with-gap radio-col-cyan" name="kehadiran" value="ijin"<?php echo $list->IJIN=='1'?'checked':''; ?>>
                                    <label for="radio_1">IJIN</label>
 
-                                   <input type="radio" id="radio_2" class="with-gap radio-col-orange" name="ALPA" value="1"<?php echo $list->ALPA=='1'?'checked':''; ?>>
+                                   <input type="radio" id="radio_2" class="with-gap radio-col-orange" name="kehadiran" value="alpa"<?php echo $list->ALPA=='1'?'checked':''; ?>>
                                    <label for="radio_2">ALPA </label>
 
                                    
-                                   <input type="radio" id="radio_3" class="with-gap radio-col-red" name="SAKIT" value="1"<?php echo $list->SAKIT=='1'?'checked':''; ?>>
+                                   <input type="radio" id="radio_3" class="with-gap radio-col-red" name="kehadiran" value="sakit"<?php echo $list->SAKIT=='1'?'checked':''; ?>>
                                    <label for="radio_3">SAKIT</label>
 
 
@@ -102,7 +102,7 @@
                             
                                 <div class="row clearfix">
                                     <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
-                                           <a class="btn btn-info" href="<?php echo base_url('index.php/data/data_siswa') ?>">Back</a>
+                                            <a class="btn btn-info" href="<?php echo base_url('index.php/walisiswa/dashboard') ?>">Back</a>
                                 <input type="submit" class="btn btn-success" value="Submit" name="submit">
                                 <input type="reset" class="btn btn-danger" value="Reset">
                                     </div>

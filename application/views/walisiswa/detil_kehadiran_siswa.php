@@ -1,10 +1,11 @@
 
     <!-- Jquery Core Js -->
-   
+
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
                 <h2>DASHBOARD</h2>
+               
             </div>
 
             <!-- Widgets -->
@@ -74,12 +75,11 @@
                                 <tr>
                                     <th>No</th>
                                     <th>NIS </th>
-                                   <!--  <th>Nama</th> -->
+                                    <th>Nama</th>
                                     <th>Tanggal</th>
                                     <th>Ijin</th>
                                     <th>Sakit</th>
                                     <th>Alpha</th>
-                                    <th>Masuk</th>
                               
 
                                 </tr>
@@ -91,12 +91,11 @@
                             <tr>
                                 <td><?php echo $no ?></td>
                                 <td><?php echo $row->NIS?></td>
-                                <!-- <td><?php echo $row->NM_SISWA?></td> -->
+                                <td><?php echo $row->NM_SISWA?></td>
                                 <td><?php echo $row->LAST_ABSEN?></td>
                                 <td ><?php echo $row->IJIN ?></td>
                                 <td ><?php echo $row->SAKIT ?></td>
                                 <td ><?php echo $row->ALPA ?></td>
-                                <td><?php echo $row->MASUK?></td>
                                 
                                 </td>
                                  

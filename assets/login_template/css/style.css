@@ -10,7 +10,14 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   color: white;
   font-weight: 300;
+  background-image: url(assets/images/123.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 100% top;
+    background-attachment: fixed;
 }
+
+
 body ::-webkit-input-placeholder {
   /* WebKit browsers */
   font-family: 'Source Sans Pro', sans-serif;
@@ -37,6 +44,22 @@ body :-ms-input-placeholder {
   color: white;
   font-weight: 300;
 }
+img { max-width: 100%; }
+
+::-moz-selection { background: #de615e; color: #fff; text-shadow: none; }
+::selection { background: #de615e; color: #fff; text-shadow: none; }
+
+
+.content
+{       
+    background-image: url('../images/123.jpg');        
+    background-repeat: no-repeat;        
+    position: relative;        
+    width: 85%;            
+    height: 610px;       
+    margin-left: auto;      
+    margin-right: auto;       
+} 
 .wrapper {
   background: #50a3a2;
   background: -webkit-gradient(linear, left top, right bottom, from(#50a3a2), to(#53e3a6));
@@ -61,7 +84,7 @@ body :-ms-input-placeholder {
   text-align: center;
 }
 .container h1 {
-  font-size: 40px;
+  font-size: 80px;
   -webkit-transition-duration: 1s;
           transition-duration: 1s;
   -webkit-transition-timing-function: ease-in-put;
@@ -69,7 +92,7 @@ body :-ms-input-placeholder {
   font-weight: 200;
 }
 form {
-  padding: 20px 0;
+  padding: 100px 0;
   position: relative;
   z-index: 2;
 }
@@ -78,15 +101,15 @@ form input {
      -moz-appearance: none;
           appearance: none;
   outline: 0;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.4);
   background-color: rgba(255, 255, 255, 0.2);
-  width: 250px;
+  width: 400px;
   border-radius: 3px;
   padding: 10px 15px;
   margin: 0 auto 10px auto;
   display: block;
   text-align: center;
-  font-size: 18px;
+  font-size: 25px;
   color: white;
   -webkit-transition-duration: 0.25s;
           transition-duration: 0.25s;

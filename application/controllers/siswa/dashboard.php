@@ -28,13 +28,13 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function masuk(){
+			
 
 		if($this->input->post('submit'))
 		{
-
+		
 		$NIS = $this->session->userdata('NIS');
-
-		if($this->siswa_model->masuk($NIS) == TRUE)
+			if($this->siswa_model->masuk($NIS) == TRUE)
 				{
 						
 					$data['notif'] = 'Anda Berhasil Absen!';
@@ -45,11 +45,16 @@ class Dashboard extends CI_Controller {
 					$data['notif'] = 'Anda Sudah Absen Hari Ini!';
 					redirect('siswa/dashboard');
 				}
+
+		
+		
+		
 		}
+		}
+		
 	}
 
 
-}
 
 /* End of file dashboard_siswa.php */
 /* Location: ./application/controllers/dashboard_siswa.php */

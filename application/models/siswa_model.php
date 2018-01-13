@@ -30,16 +30,24 @@ class Siswa_model extends CI_Model {
 			'ALPA' => '0',
   			'LAST_ABSEN'=> $tanggalabsen);
 		$this->db->insert('tb_kehadiran', $data);
-		if($this->db->affected_rows() > 0)
+			if($this->db->affected_rows() > 0)
 		{
+
 			return TRUE;
 		}
 		else {
 			return FALSE;
   	}
+
+  	
+		
   	
   }
 }
+
+	
+
+
 
 }
 
