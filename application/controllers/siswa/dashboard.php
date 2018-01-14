@@ -16,7 +16,6 @@ class Dashboard extends CI_Controller {
 		if($this->session->userdata('logged_in') == TRUE){
 
 		$data['main_view'] = 'dashboard_siswa';		
-					
 		$NIS = $this->session->userdata('NIS'); 
 		$data['list'] = $this->admin_model->count_kehadiran_siswa($NIS);
 		$this->load->view('template_siswa', $data);

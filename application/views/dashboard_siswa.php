@@ -13,9 +13,11 @@
                             <i class="material-icons">playlist_add_check</i>
                         </div>
                         <div class="content">
-                            <?php foreach ($list as $row):?>
                             <div class="text">SAKIT</div>
+                            <?php foreach ($list as $row):?>
+                               <br>
                             <div><?php echo $row->JML_SAKIT?></div>
+                            <br>
                              <?php endforeach; ?>
                         </div>
                     </div>
@@ -26,9 +28,11 @@
                             <i class="material-icons">help</i>
                         </div>
                         <div class="content">
+                             <div class="text">IJIN</div>
                             <?php foreach ($list as $row):?>
-                            <div class="text">IJIN</div>
+                                <br>
                             <div><?php echo $row->JML_IJIN?></div>
+                            <br>
                              <?php endforeach; ?>
                         </div>
                     </div>
@@ -38,10 +42,12 @@
                         <div class="icon">
                             <i class="material-icons">forum</i>
                         </div>
-                        <div class="content">
-                             <?php foreach ($list as $row):?>
+                        <div class="content"> 
                             <div class="text">ALPHA</div>
+                             <?php foreach ($list as $row):?>
+                                <br>
                             <div> <?php echo $row->JML_ALPA;?> </div>
+                            <br>
                             <?php endforeach; ?>
                         </div>
                     </div>
@@ -52,9 +58,12 @@
                             <i class="material-icons">person_add</i>
                         </div>
                         <div class="content">
-                            <?php foreach ($list as $row):?>
+
                             <div class="text">MASUK</div>
+                            <?php foreach ($list as $row):?>
+                                <br>
                             <div><?php echo $row->JML_MASUK?></div>
+                            <br>
                              <?php endforeach; ?>
                         </div>
                     </div>
@@ -84,7 +93,7 @@
                             <div class="form-group">
                                 <br><br><br><br><br><br>
 
-                            <form class="form-horizontal" action="<?php echo base_url();?>index.php/siswa/dashboard/masuk" method="post">
+                            <form type="hidden" class="form-horizontal" action="<?php echo base_url();?>index.php/siswa/dashboard/masuk" method="post">
                             <label class="col-md-4 control-label" for="singlebutton"></label>
                             <div class="col-md-4">
                             <input type="submit" class="btn btn-danger center-block" style="height: 60px;width: 200px" value="MASUK" name="submit">
