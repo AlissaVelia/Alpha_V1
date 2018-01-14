@@ -8,7 +8,13 @@
     <title>Alpha V.1</title>
     <!-- Favicon-->
     <link rel="icon" href="<?php echo base_url();?>assets/favicon.ico" type="image/x-icon">
-
+    
+    <!-- popup -->    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
@@ -80,7 +86,7 @@
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Call Search -->
-                    <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
+                    
                     <!-- #END# Call Search -->
                     <!-- Notifications -->
                     <li class="dropdown">
@@ -286,7 +292,7 @@
                 </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Welcome Guru
+                       Wellcome <?php echo $this->session->userdata('NM_GURU');; ?>
                     </div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
@@ -304,13 +310,17 @@
                 <ul class="list">
                     <li class="header">DATA UTAMA</li>
                     <li class="active">
-                        <a href="<?php echo base_url(); ?>index.php/dashboard">
+                        <a href="<?php echo base_url();?>index.php/guru/dashboard">
                             <i class="material-icons">home</i>
                             <span>Home</span>
                         </a>
+                        <a href="<?php echo base_url();?>index.php/guru_login/lihatsikap">
+                            <i class="material-icons">home</i>
+                            <span>Lihat Sikap</span>
+                        </a>
                     </li>
                 
-                 
+                 <!-- 
                     <li>
                        <a href="#">
                             <i class="material-icons">widgets</i>
@@ -333,7 +343,7 @@
                             <i class="material-icons col-light-blue">donut_large</i>
                             <span> - - - </span>
                         </a>
-                </ul>
+                </ul> -->
             </div>
             <!-- #Menu -->
             <!-- Footer -->
@@ -496,7 +506,7 @@
     <script src="<?php echo base_url();?>assets/plugins/bootstrap/js/bootstrap.js"></script>
 
     <!-- Select Plugin Js -->
-    <script src="<?php echo base_url();?>assets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <script src="<?php echo base_url();?>assets/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
 
     <!-- Slimscroll Plugin Js -->
     <script src="<?php echo base_url();?>assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>

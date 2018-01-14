@@ -4,54 +4,18 @@
             <div class="block-header">
                 <h2>DASHBOARD</h2>
             </div>
-
+            <?php
+                if ($this->session->flashdata('addsikap')) {
+                    # code...
+                    ?>
+                    <div class="alert alert-success"> 
+                        <?php echo $this->session->flashdata('addsikap')?>
+                    </div>
+                <?php
+                }
+            ?>
             <!-- Widgets -->
-            <div class="row clearfix">
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-pink hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">playlist_add_check</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">SAKIT</div>
-                            <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-cyan hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">help</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">IJIN</div>
-                            <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-light-green hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">forum</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">ALPHA</div>
-                            <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-orange hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">person_add</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">KETERANGAN</div>
-                            <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
             <!-- #END# Widgets -->
             <!-- CPU Usage -->
             <div class="row clearfix">
@@ -60,31 +24,82 @@
                         <div class="header">
                             <div class="row clearfix">
                                 <div class="col-xs-12 col-sm-6">
-                                    <h2>CPU USAGE (%)</h2>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 align-right">
-                                    <div class="switch panel-switch-btn">
-                                        <span class="m-r-10 font-12">REAL TIME</span>
-                                        <label>OFF<input type="checkbox" id="realtime" checked><span class="lever switch-col-cyan"></span>ON</label>
-                                    </div>
+                                    <h2>List Siswa</h2>
                                 </div>
                             </div>
-                            <ul class="header-dropdown m-r--5">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="javascript:void(0);">Action</a></li>
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else here</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
                         </div>
-                        <div class="body">
-                            <div id="real_time_chart" class="dashboard-flot-chart"></div>
+
+                    <!-- mulai tabel -->
+                       <div class="body">
+
+                            <div class="table-responsive">
+                                <table class="table table-stripped table-bordered table-hover dataTable" 
+                                id="dataTables-example" >
+                                      <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>NIS</th>
+                                    <th>Nama siswa</th>
+                                    <th>Kode Kelas </th>
+                                    <th>No Telp </th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Action</th>
+                                    
+                                </tr>
+                            </thead>
+
+                                <!-- untuk menampilkan data ke halaman dari database -->
+                            
+                            <tbody>
+
+                        <?php $no = 1;
+                            foreach ($list as $row):?>
+                            <tr>
+                                <td><?php echo $no ?></td>
+                                <td id="1"><?php echo $row->NIS ?></td>
+                                <td><?php echo $row->NM_SISWA ?></td>
+                                <td><?php echo $row->KD_KELAS ?></td>
+                                <td><?php echo $row->NO_TELP ?></td>
+                                <td><?php echo $row->JENKEL ?></td>
+                                <td>
+                                   <div data-role="main" class="ui-content">
+                                        <a href="#myPopup<?php echo $row->NIS ?>" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all ui-icon-plus ui-btn-icon-left" style="background-color: #f97e20; color: white">Tambah Sikap</a>
+
+                                        <div data-history="false" data-role="popup" id="myPopup<?php echo $row->NIS ?>" class="ui-content" style="min-width:250px;">
+                                          <form role="form" action="<?php echo base_url('index.php/guru_login/proses')?>" method="post">
+                                            <div>
+                                              <label>Nama Siswa:</label>
+                                              <input type="text" name="nama_siswa" value="<?php echo $row->NM_SISWA ?>" readonly>
+                                              <label>NIS Siswa:</label>
+                                              <input type="text" name="nis_siswa" value="<?php echo $row->NIS?>" readonly>
+                                              <label>Nilai Sikap:</label>
+                                              <label for="sikap_1">
+                                                 <?php echo form_radio('sikap_siswa', 'A', set_checkbox('sikap_siswa', 'A',TRUE), "id='sikap_1'" ); ?> A
+                                              </label>
+                                              <label for="sikap_2">
+                                                <?php echo form_radio('sikap_siswa', 'B', set_checkbox('sikap_siswa', 'B'), "id='sikap_2'"); ?> B
+                                              </label>
+                                              <label for="sikap_3">
+                                                <?php echo form_radio('sikap_siswa', 'C', set_checkbox('sikap_siswa', 'C'), "id='sikap_3'"); ?> C
+                                              </label>
+                                              <label for="sikap_4">
+                                                <?php echo form_radio('sikap_siswa', 'D', set_checkbox('sikap_siswa', 'D'), "id='sikap_4'"); ?> D
+                                              </label>
+                                              <input type="submit" value="Submit" data-ajax="false">
+                                            </div>
+                                          </form>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <?php $no++; ?>
+                        <?php endforeach; ?>
+                        </tbody>
+                                </table>
+                            </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>

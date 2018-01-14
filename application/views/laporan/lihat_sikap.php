@@ -9,20 +9,24 @@
                                 LAPORAN SIKAP SISWA
                                    </h2>
                                 <br>
-                      
+                
+                <!-- alert tambah sikap -->
+                <?php
+                if ($this->session->flashdata('addsikap')) {
+                    # code...
+                    ?>
+                    <div class="alert alert-success"> 
+                        <?php echo $this->session->flashdata('addsikap')?>
+                    </div>
+                <?php
+                }
+                ?>
                          
 
                         </div>
                         <div class="body">
-                           <?php
-                            if(!empty($notif))
-                            {
-                                echo "<div class='alert alert-danger'>".$notif."</div>";
-                            }
-
-                            ?>
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                <table class="table table-bordered table-striped table-hover">
                                     <thead>
                                 <tr>
                                     <th>No</th>

@@ -610,6 +610,29 @@ class Admin_model extends CI_Model
 			 $query = $this->db->query("SELECT * FROM tb_guru");
     				return $query->num_rows();
 		}
+		public function getsiswa()
+		{
+			return $this->db->get('tb_siswa')->result();
+		}
+
+		public function tambahsikap()
+		{
+			$object = array(
+				'NIS'   => $this->input->post('nis_siswa'),
+				'SIKAP' => $this->input->post('sikap_siswa'), 
+				'KD_MAPEL' => $this->session->userdata('KD_MAPEL'),
+				'KD_GURU' => $this->session->userdata('KD_GURU')
+			);
+
+			$this->db->insert('tb_sikap', $object);
+
+			if ($this->db->affected_rows()) {
+				# code...
+				return TRUE;
+			}else{
+				return FALSE;
+			}
+		}
 
 		
         
