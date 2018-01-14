@@ -11,8 +11,8 @@
   
 </head>
 
-<body style="background-image: url('<?php echo base_url()?>assets/images/as.jpg'); ">
-  <div >
+<body>
+  <div class="wrapper">
     <div class="container">
         <h1>Welcome</h1>
         

@@ -72,8 +72,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     if($query->num_rows() > 0)
         {
+          $querys = $this->db->where('NIK', $NIK)
+               ->where('NM_GURU', $NM_GURU)
+               ->get('tb_guru')
+               ->row();
+               
           $data = array (
             'NIK' => $NIK,
+            'KD_MAPEL' => $querys->KD_MAPEL,
+            'KD_GURU' => $querys->KD_GURU,
+            'NM_GURU' => $querys->NM_GURU,
             'logged_in' => TRUE);
 
          $this->session->set_userdata($data);

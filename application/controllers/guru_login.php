@@ -6,6 +6,7 @@ public function __construct()
 	{
 		parent::__construct();
 		$this->load->model('Admin_m');
+		$this->load->model('admin_model');
 		//Do your magic here
 	}
 
@@ -38,15 +39,40 @@ public function __construct()
 			}
 		} 
 	}
+
+	public function proses()
+	{
+		
+		if ($this->admin_model->tambahsikap() == TRUE) {
+			$this->session->set_flashdata('addsikap', 'tambah sikap berhasil');
+			$data['main_view'] = 'laporan/lihat_sikap';
+			$data['list'] = $this->admin_model->laporan_sikap();
+			$this->load->view('template_guru', $data);
+		}else{
+			$this->session->set_flashdata('addsikap', 'tambah sikap gagal');
+			redirect('guru/dashboard');
+		}
+	}
+	public function lihatsikap()
+	{
+			$data['main_view'] = 'laporan/lihat_sikap';
+			$data['list'] = $this->admin_model->laporan_sikap();
+			$this->load->view('template_guru', $data);
+	}
+
 	public function logout()
 	{
 		$data = array(
 				'NIK'	=> '',
+				'KD_MAPEL' => '',
+            	'KD_GURU' => '',
+            	'NM_GURU' => '',
 				'logged_in' => FALSE
 			);
 
 		$this->session->sess_destroy();
 		redirect('guru_login');
+
 	}
 }
 
