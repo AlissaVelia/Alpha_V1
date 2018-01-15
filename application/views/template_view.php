@@ -181,12 +181,7 @@
                             <span>Nilai Sikap</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <i class="material-icons col-light-blue">donut_large</i>
-                            <span> - - - </span>
-                        </a>
-                    </li>
+                    
                 </ul>
             </div>
             <!-- #Menu -->
