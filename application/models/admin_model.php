@@ -8,7 +8,47 @@ class Admin_model extends CI_Model
 		parent::__construct();
 		//Do your magic here
 	}
-
+	
+	public function tamvahsikap($NIS)
+	{
+		$data = array(
+			'KD_MAPEL' => $this->session->userdata('KD_MAPEL'),
+			'NIS' => $NIS,
+			'KD_GURU' => $this->session->userdata('KD_GURU'),
+			'SIKAP' => 'A'
+			);
+			$this->db->insert('tb_sikap', $data);
+					 
+			if($this->db->affected_rows() > 0)
+			{
+				return TRUE;
+			}
+			else
+			 {
+				return FALSE;
+			}
+	}
+	public function getsiswaguru()
+	{
+		return $this->db->join('tb_siswa', 'tb_siswa.KD_KELAS = tb_kelas.KD_KELAS', 'left')
+				 ->get('tb_kelas')->result();	
+	}
+		public function joinkelas()
+	{	
+		return $this->db->join('tb_siswa', 'tb_siswa.KD_KELAS = tb_kelas.KD_KELAS', 'left')
+				 ->get('tb_kelas')->row();
+		// $kueri1 = "SELECT tb_kelas.NM_KELAS FROM tb_siswa INNER JOIN tb_kelas ON tb_siswa.KD_KELAS = tb_kelas.KD_KELAS";
+		// return $kueri1->result();
+	}
+	public function joinwalsis()
+	{
+		// $kueri1 = "SELECT tb_walisiswa.NM_WALSIS FROM tb_siswa INNER JOIN tb_walisiswa ON tb_siswa.KD_WALSIS = tb_walisiswa.KD_WALSIS";
+		// return $kueri1->result();
+	}
+	public function getdatasiswa($NIS)
+	{
+		return $this->db->where('NIS', $NIS)->get('tb_siswa')->row();
+	}
 	public function insert_kelas()
 	{
 		$data = array(
