@@ -26,7 +26,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Kode Guru </th>
-                                    <th>Kode Mapel </th>
+                                    <th>Mapel </th>
                                     <th>Nama Guru</th>
                                     <th>NIK</th>
                                     <th>Aksi</th>
@@ -42,7 +42,7 @@
                             <tr>
                                 <td><?php echo $no ?></td>
                                 <td><?php echo $row->KD_GURU?></td>
-                                <td><?php echo $row->KD_MAPEL?></td>
+                                <td><?php echo $row->NM_MAPEL?></td>
                                 <td><?php echo $row->NM_GURU ?></td>
                                 <td><?php echo $row->NIK?></td>
                                 

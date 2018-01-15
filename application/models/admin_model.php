@@ -8,7 +8,48 @@ class Admin_model extends CI_Model
 		parent::__construct();
 		//Do your magic here
 	}
-
+	
+	public function tamvahsikap($NIS)
+	{
+		$data = array(
+			'KD_MAPEL' => $this->session->userdata('KD_MAPEL'),
+			'NIS' => $NIS,
+			'KD_GURU' => $this->session->userdata('KD_GURU'),
+			'SIKAP' => 'A'
+			);
+			$this->db->insert('tb_sikap', $data);
+					 
+			if($this->db->affected_rows() > 0)
+			{
+				return TRUE;
+			}
+			else
+			 {
+				return FALSE;
+			}
+	}
+	public function getsiswaguru()
+	{
+		return $this->db->join('tb_siswa', 'tb_siswa.KD_KELAS = tb_kelas.KD_KELAS', 'left')
+				 ->get('tb_kelas')->result();	
+	}
+		public function joinkelas()
+	{	
+		return $this->db->join('tb_siswa', 'tb_siswa.KD_KELAS = tb_kelas.KD_KELAS', 'left')
+				 ->get('tb_kelas')->row();
+		// $kueri1 = "SELECT tb_kelas.NM_KELAS FROM tb_siswa INNER JOIN tb_kelas ON tb_siswa.KD_KELAS = tb_kelas.KD_KELAS";
+		// return $kueri1->result();
+	}
+	public function joinwalsis()
+	{
+		// $kueri1 = "SELECT tb_walisiswa.NM_WALSIS FROM tb_siswa INNER JOIN tb_walisiswa ON tb_siswa.KD_WALSIS = tb_walisiswa.KD_WALSIS";
+		// return $kueri1->result();
+	}
+	public function getdatasiswa($NIS)
+	{
+		return $this->db->where('NIS', $NIS)->get('tb_siswa')->row();
+		
+	}
 	public function insert_kelas()
 	{
 		$data = array(
@@ -146,7 +187,10 @@ class Admin_model extends CI_Model
 	}
 	public function read_guru()
 	{
-		return $this->db->get('tb_guru')->result();
+		return $this->db->select('*')
+						->join('tb_mapel', "tb_mapel.KD_MAPEL=tb_guru.KD_MAPEL")
+				        ->get('tb_guru')
+						->result();
 	}
     
     public function delete_guru($KD_GURU)
@@ -287,7 +331,12 @@ class Admin_model extends CI_Model
 	}
 	public function read_siswa()
 	{
-		return $this->db->get('tb_siswa')->result();
+		return $this->db->select('*')						
+						->join('tb_kelas', "tb_kelas.KD_KELAS=tb_siswa.KD_KELAS")
+						->join('tb_walisiswa', "tb_walisiswa.KD_WALSIS=tb_siswa.KD_WALSIS")
+						->order_by('NM_KELAS', 'ASC')
+				        ->get('tb_siswa')
+						->result();
 	}
 	public function read_ksiswa()
 	{
@@ -384,27 +433,7 @@ class Admin_model extends CI_Model
 
 	}
 
-	public function read_sikap_siswa($KD_WALSIS)
-	{
-
-		// $kueri = $this->db->query("SELECT * FROM v_sikap_siswa WHERE KD_WALSIS = $KD_WALSIS");
-		// // 'SELECT * FROM v_sikap_siswa WHERE KD_WALSIS = $KD_WALSIS';
-		// return $query;
-
-		$kueri = "SELECT * FROM v_sikap_siswa WHERE KD_WALSIS = $KD_WALSIS ORDER BY KELAS ASC";
-				 
-		$query = $this->db->query($kueri);
-		$row = $query->result();
-		if (isset($row))
-        {
-			return $row;
-			//return TRUE;
-		}
-		else
-		 {
-			return FALSE;
-		}
-	}
+	
 	
     
     public function delete_siswa($NIS)
@@ -433,7 +462,11 @@ class Admin_model extends CI_Model
     
      public function update_siswa($NIS)
 		{
-			
+			$KD_KELAS1 = $this->db->where('NIS', $NIS)->get('tb_siswa')->row()->KD_KELAS;
+ 		$jml_kls1 = $this->db->where('KD_KELAS', $KD_KELAS1)->get('tb_kelas')->row()->JML_SISWA;
+
+			$KD_KELAS = $this->input->post('KD_KELAS');
+ 		$jml_kls = $this->db->where('KD_KELAS', $KD_KELAS)->get('tb_kelas')->row()->JML_SISWA;
 			$data = array(
 			//''NIS' => $this->input->post('NIS'),
 			'KD_WALSIS' => $this->input->post('KD_WALSIS'),
@@ -450,6 +483,12 @@ class Admin_model extends CI_Model
 		    'JENKEL' => $this->input->post('JENKEL'));
 			$this->db->where('NIS', $NIS)
 					 ->update('tb_siswa', $data);
+					 $tambah = (int)$jml_kls + 1;
+			$this->db->set('JML_SISWA', $tambah)
+					 ->where('KD_KELAS', $KD_KELAS)
+					 ->update('tb_kelas');
+			$min = (int)$jml_kls1 - 1 ;
+			$this->db->set('JML_SISWA', $min)->WHERE('KD_KELAS', $KD_KELAS1)->update('tb_kelas');
 					 
 			if($this->db->affected_rows() > 0)
 			{
@@ -468,7 +507,7 @@ class Admin_model extends CI_Model
 
 		public function laporan_sikap()
 		{
-		$kueri = 'SELECT * FROM v_sikap_siswa';
+		$kueri = 'SELECT * FROM v_sikap_siswa ORDER BY KELAS ASC';
 		$query = $this->db->query($kueri);
 		$row = $query->result();
 		if (isset($row))
@@ -482,9 +521,31 @@ class Admin_model extends CI_Model
 		}
 		}
 
+		public function read_sikap_siswa($KD_WALSIS)
+	{
+
+		// $kueri = $this->db->query("SELECT * FROM v_sikap_siswa WHERE KD_WALSIS = $KD_WALSIS");
+		// // 'SELECT * FROM v_sikap_siswa WHERE KD_WALSIS = $KD_WALSIS';
+		// return $query;
+
+		$kueri = "SELECT * FROM v_sikap_siswa WHERE KD_WALSIS = $KD_WALSIS ORDER BY KELAS ASC";
+				 
+		$query = $this->db->query($kueri);
+		$row = $query->result();
+		if (isset($row))
+        {
+			return $row;
+			//return TRUE;
+		}
+		else
+		 {
+			return FALSE;
+		}
+	}
+
 		public function laporan_kehadiran()
 		{
-		$kueri = 'SELECT * FROM v_kehadiran_siswa';
+		$kueri = 'SELECT * FROM v_kehadiran_siswa ORDER BY KELAS ASC';
 
 		$query = $this->db->query($kueri);
 		$row = $query->result();
@@ -642,7 +703,8 @@ class Admin_model extends CI_Model
 		}
 		public function getsiswa()
 		{
-			return $this->db->get('tb_siswa')->result();
+			return $this->db->join('tb_siswa', 'tb_siswa.KD_KELAS = tb_kelas.KD_KELAS', 'left')
+				 ->get('tb_kelas')->result();
 		}
 
 		public function tambahsikap()
@@ -685,6 +747,16 @@ class Admin_model extends CI_Model
 		}
 		}
 		
+		public function del_riwayat_kehadiran()
+		{
+			$this->db->empty_table('tb_kehadiran');
+
+		}
+		public function del_riwayat_sikap()
+		{
+			$this->db->empty_table('tb_sikap');
+
+		}
 		
         
 }

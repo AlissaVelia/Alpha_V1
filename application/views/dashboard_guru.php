@@ -40,7 +40,7 @@
                                     <th>No</th>
                                     <th>NIS</th>
                                     <th>Nama siswa</th>
-                                    <th>Kode Kelas </th>
+                                    <th>Nama Kelas </th>
                                     <th>No Telp </th>
                                     <th>Jenis Kelamin</th>
                                     <th>Action</th>
@@ -58,7 +58,7 @@
                                 <td><?php echo $no ?></td>
                                 <td id="1"><?php echo $row->NIS ?></td>
                                 <td><?php echo $row->NM_SISWA ?></td>
-                                <td><?php echo $row->KD_KELAS ?></td>
+                                <td><?php echo $row->NM_KELAS ?></td>
                                 <td><?php echo $row->NO_TELP ?></td>
                                 <td><?php echo $row->JENKEL ?></td>
                                 <td>

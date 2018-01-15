@@ -22,6 +22,13 @@ class Laporan_kehadiran extends CI_Controller {
 		}
 	}
 
+	public function del_riwayat()
+	{
+		$this->admin_model->del_riwayat_kehadiran();
+		$this->session->set_flashdata('apakah anda yakin ?');
+			redirect('laporan/laporan_kehadiran');
+	}
+
 }
 /* End of file controllername.php */
 /* Location: ./application/controllers/controllername.php */

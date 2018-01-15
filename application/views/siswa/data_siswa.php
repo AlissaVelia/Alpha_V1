@@ -27,8 +27,8 @@
                                 <tr>
                                     <th>No</th>
                                     <th>NIS</th>
-                                    <th>Kode Walisiswa </th>
-                                    <th>Kode Kelas </th>
+                                    <th>Walisiswa </th>
+                                    <th>Kelas </th>
                                     <th>Nama siswa</th>
                                     <th>TTL</th>
                                     <th>Alamat</th>
@@ -52,8 +52,8 @@
                             <tr>
                                 <td><?php echo $no ?></td>
                                 <td><?php echo $row->NIS?></td>
-                                <td><?php echo $row->KD_WALSIS?></td>
-                                <td><?php echo $row->KD_KELAS ?></td>
+                                <td><?php echo $row->NM_WALSIS?></td>
+                                <td><?php echo $row->NM_KELAS ?></td>
                                 <td><?php echo $row->NM_SISWA ?></td>
                                 <td><?php echo $row->TTL ?></td>
                                 <td><?php echo $row->ALAMAT ?></td>

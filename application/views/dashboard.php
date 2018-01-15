@@ -11,6 +11,7 @@
  
             <!-- Widgets -->
             <div class="row clearfix">
+                <!-- <a href="<?php echo base_url('index.php/kurikulum/dashboard/del_riwayat');?>" class="btn btn-success" style="float: right;margin-top: -60px">HAPUS RIWAYAT</a> -->
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box bg-pink hover-expand-effect">
                         <div class="icon">
@@ -59,7 +60,14 @@
                 </div>
             </div>
 
-<div id="container" style="width: 500px">
+<div class="row clearfix">
+                <!-- Task Info -->
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                    <div class="card">
+                       
+                        <div class="body">
+                            <div class="table-responsive">
+                                                    <div id="container" style="width: 500px">
 
 <table id="datatable">
     
@@ -125,9 +133,7 @@
     }
 });
  </script>
- <div> keterangan </div>
-
- <div id="container2" style="width: 500px">
+                                 <div id="container2"">
     <table id="datatable23">
     
     <thead>
@@ -191,7 +197,22 @@
     }
 });
  </script>
-<div> keterangan </div>
+
+                            </div>
+                            <div style="text-align: center;">Keterangan : <img src="assets/images/1.jpg" alt="icon" /> </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- #END# Task Info -->
+                <!-- Browser Usage -->
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+
+
 </div>
 </div>
+
+<!--  -->
+                </div>
+                <!-- #END# Browser Usage -->
+            </div>
     </section>

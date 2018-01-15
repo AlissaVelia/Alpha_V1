@@ -39,6 +39,16 @@ public function __construct()
 			}
 		} 
 	}
+	public function logout()
+	{
+		$data = array(
+				'NIK'	=> '',
+				'logged_in' => FALSE
+			);
+
+		$this->session->sess_destroy();
+		redirect('guru_login');
+	}
 
 	public function proses()
 	{
@@ -58,21 +68,6 @@ public function __construct()
 			$data['main_view'] = 'laporan/lihat_sikap';
 			$data['list'] = $this->admin_model->laporan_sikap();
 			$this->load->view('template_guru', $data);
-	}
-
-	public function logout()
-	{
-		$data = array(
-				'NIK'	=> '',
-				'KD_MAPEL' => '',
-            	'KD_GURU' => '',
-            	'NM_GURU' => '',
-				'logged_in' => FALSE
-			);
-
-		$this->session->sess_destroy();
-		redirect('guru_login');
-
 	}
 }
 

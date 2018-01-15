@@ -11,7 +11,7 @@
                                    </h2>
                                 <br>
                       
-                         
+                          <a href="<?php echo base_url('index.php/laporan/laporan_kehadiran/del_riwayat');?>" class="btn btn-success" style="float: right;margin-top: -60px" onclick="return confirm('Apakah anda ingin menghapus semua riwayat ?')">HAPUS RIWAYAT</a>
 
                         </div>
                         <div class="body">

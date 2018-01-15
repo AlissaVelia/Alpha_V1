@@ -21,6 +21,15 @@ class Laporan_sikap extends CI_Controller {
 		}
 	}
 
+	public function del_riwayat()
+	{
+		$this->admin_model->del_riwayat_sikap();
+		$this->session->set_flashdata('notif', 
+					'Peringatan! Data master tidak bisa dihapus karena ada rincian data
+					yang berhubungan dengan data tersebut.');
+			redirect('dashboard');
+	}
+
 }
 
 /* End of file laporan_sikap.php */

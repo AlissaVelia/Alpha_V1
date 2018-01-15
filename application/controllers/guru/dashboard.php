@@ -6,6 +6,9 @@ class Dashboard  extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('admin_model');
+		if($this->session->userdata('logged_in') == false){
+			redirect('guru_login');
+		}
 	}
 
 	public function index()
@@ -19,7 +22,41 @@ class Dashboard  extends CI_Controller {
 			redirect('guru_login');
 		}
 	}
-}
 
-/* End of file dashboard_siswa.php */
-/* Location: ./application/controllers/dashboard_siswa.php */
+	public function homets()
+	{
+		$data['tb_kelas'] = $this->admin_model->getsiswaguru();
+		$this->load->view('tambahsikap', $data);
+	}
+	public function tambahsikap()
+	{
+
+		$NIS = $this->input->get('NIS');
+		if($this->input->post('submit'))
+			{
+				
+			if ($this->form_validation->run() == TRUE) {
+				if( $this->admin_model->tamvahsikap($NIS) == TRUE)
+					{
+						$data['notif'] = 'berhasil';
+						$data['tb_kelas'] = $this->admin_model->getsiswaguru();
+						
+						redirect('guru/dashboard');
+						$data['main_view'] = 'dashboard_guru';
+$this->load->view('template_guru', $data);
+					}
+					else
+					{
+						$data['notif'] = 'gagal';
+						
+						redirect('guru/dashboard');
+						$data['main_view'] = 'dashboard_guru';
+$this->load->view('template_guru', $data);
+					}
+				}	
+
+			}
+	}
+
+
+}

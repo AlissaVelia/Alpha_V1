@@ -57,7 +57,7 @@
                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                 <input class="form-control" name="LAST_ABSEN" value="<?php echo $list->LAST_ABSEN;?>" disabled>
+                                                 <input type="date" class="form-control" name="LAST_ABSEN" value="<?php echo $list->LAST_ABSEN;?>" >
                                             </div>
                                         </div>
                                     </div>
