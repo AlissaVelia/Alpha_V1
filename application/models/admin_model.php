@@ -48,7 +48,6 @@ class Admin_model extends CI_Model
 	public function getdatasiswa($NIS)
 	{
 		return $this->db->where('NIS', $NIS)->get('tb_siswa')->row();
-		
 	}
 	public function insert_kelas()
 	{
@@ -370,7 +369,7 @@ class Admin_model extends CI_Model
 
 	public function read_siswa_walisiswa($KD_WALSIS)
 	{
-
+		
 
         $kueri1 = "SELECT * FROM tb_kehadiran INNER JOIN tb_siswa on tb_siswa.NIS = tb_kehadiran.NIS WHERE tb_kehadiran.KD_KEHADIRAN IN(SELECT MAX(KD_KEHADIRAN)
  					FROM tb_kehadiran GROUP BY NIS) AND tb_siswa.KD_WALSIS = $KD_WALSIS ORDER BY LAST_ABSEN ASC";

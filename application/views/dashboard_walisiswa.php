@@ -109,7 +109,7 @@
                                 <td><?php echo $no ?></td>
                                 <td><?php echo $row->NM_SISWA?><!-- 
                                 <td><?php echo $row->KD_WALSIS?></td> --> 
-                                <td><?php echo $row->KD_KEHADIRAN?></td>
+                                <td><?php echo $row->KD_KELAS?></td>
                                 <td><?php echo $row->NIS?></td><!-- 
                                 <td><?php echo $row->KD_KELAS?></td> -->
                                 <td><?php echo $row->LAST_ABSEN?></td>

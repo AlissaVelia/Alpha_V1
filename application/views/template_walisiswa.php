@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+F<!DOCTYPE html>
 <html>
 
 <head>
@@ -152,11 +152,7 @@
                     </li>
                     -->
                     
-                    <li>
-                        <a href="javascript:void(0);">
-                            <i class="material-icons col-light-blue">donut_large</i>
-                            <span> - - - </span>
-                        </a>
+                    
                 </ul>
             </div>
             <!-- #Menu -->
