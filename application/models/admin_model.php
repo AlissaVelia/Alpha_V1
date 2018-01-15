@@ -8,7 +8,47 @@ class Admin_model extends CI_Model
 		parent::__construct();
 		//Do your magic here
 	}
-
+	
+	public function tamvahsikap($NIS)
+	{
+		$data = array(
+			'KD_MAPEL' => $this->session->userdata('KD_MAPEL'),
+			'NIS' => $NIS,
+			'KD_GURU' => $this->session->userdata('KD_GURU'),
+			'SIKAP' => 'A'
+			);
+			$this->db->insert('tb_sikap', $data);
+					 
+			if($this->db->affected_rows() > 0)
+			{
+				return TRUE;
+			}
+			else
+			 {
+				return FALSE;
+			}
+	}
+	public function getsiswaguru()
+	{
+		return $this->db->join('tb_siswa', 'tb_siswa.KD_KELAS = tb_kelas.KD_KELAS', 'left')
+				 ->get('tb_kelas')->result();	
+	}
+		public function joinkelas()
+	{	
+		return $this->db->join('tb_siswa', 'tb_siswa.KD_KELAS = tb_kelas.KD_KELAS', 'left')
+				 ->get('tb_kelas')->row();
+		// $kueri1 = "SELECT tb_kelas.NM_KELAS FROM tb_siswa INNER JOIN tb_kelas ON tb_siswa.KD_KELAS = tb_kelas.KD_KELAS";
+		// return $kueri1->result();
+	}
+	public function joinwalsis()
+	{
+		// $kueri1 = "SELECT tb_walisiswa.NM_WALSIS FROM tb_siswa INNER JOIN tb_walisiswa ON tb_siswa.KD_WALSIS = tb_walisiswa.KD_WALSIS";
+		// return $kueri1->result();
+	}
+	public function getdatasiswa($NIS)
+	{
+		return $this->db->where('NIS', $NIS)->get('tb_siswa')->row();
+	}
 	public function insert_kelas()
 	{
 		$data = array(
@@ -322,31 +362,9 @@ class Admin_model extends CI_Model
 	public function read_siswa_walisiswa($KD_WALSIS)
 	{
 
-		// return $this->db->where('KD_WALSIS', $KD_WALSIS)
-		// 				->select('*')
-		// 				->SELECT_MAX('LAST_ABSEN')
-		// 				->join('tb_kehadiran', "tb_kehadiran.NIS=tb_siswa.NIS")
-		// 				// ->GROUP_by('NM_SISWA') 
-		// 				->get('tb_siswa')
-		// 				->result();
-
-		//BARU//
-		// $kueri =  
- 	// 	// 	"SELECT TS.NM_SISWA, TS.KD_KELAS,TS.KD_WALSIS, TKL.NM_KELAS, TK.NIS, TK.IJIN, TK.SAKIT, TK.ALPA, TK.MASUK, TK.KD_KEHADIRAN, TK.LAST_ABSEN, " .
- 	// 	// 	" MAX(TK.KD_KEHADIRAN) AS KD_KEHADIRAN		  " .
-		// 	// " FROM tb_siswa TS, tb_kehadiran TK, tb_kelas TKL " .
-		// 	// " WHERE TS.NIS = TK.NIS AND TS.KD_KELAS = TKL.KD_KELAS " .
-		// 	// " AND TS.KD_WALSIS = '".$KD_WALSIS."' " .
-		// 	// " GROUP BY TK.NIS, TS.NIS ORDER BY TK.IJIN, TK.SAKIT, TK.ALPA, TK.MASUK DESC";
-
-		
-		// $kueri = "SELECT TS.NM_SISWA, TS.KD_KELAS,TS.KD_WALSIS, TK.NIS, TK.IJIN, TK.SAKIT, TK.ALPA, TK.MASUK, TK.KD_KEHADIRAN, TK.LAST_ABSEN
-		// FROM tb_siswa TS, tb_kehadiran TK
-		// WHERE TS.NIS = TK.NIS AND TS.KD_KELAS = TKL.KD_KELAS AND TS.KD_WALSIS = '".$KD_WALSIS."'
-  //       GROUP BY NIS";
 
         $kueri1 = "SELECT * FROM tb_kehadiran INNER JOIN tb_siswa on tb_siswa.NIS = tb_kehadiran.NIS WHERE tb_kehadiran.KD_KEHADIRAN IN(SELECT MAX(KD_KEHADIRAN)
- 					FROM tb_kehadiran GROUP BY NIS) AND tb_siswa.KD_WALSIS = $KD_WALSIS ";
+ 					FROM tb_kehadiran GROUP BY NIS) AND tb_siswa.KD_WALSIS = $KD_WALSIS ORDER BY LAST_ABSEN ASC";
 		
 
 		$query = $this->db->query($kueri1);
@@ -583,7 +601,59 @@ class Admin_model extends CI_Model
 
 		}
 
+		public function count_masuk()
+		{
+			$query = $this->db->query("SELECT SUM(tb_kehadiran.MASUK) AS MASUK FROM tb_kehadiran INNER JOIN tb_siswa on tb_siswa.NIS = tb_kehadiran.NIS WHERE tb_kehadiran.KD_KEHADIRAN IN(SELECT MAX(KD_KEHADIRAN) FROM tb_kehadiran GROUP BY NIS)");
+	    			
+	    			$hasil = $query->result_array();
+	    			return $hasil[0]["MASUK"];
+		}
 
+		public function count_ijin()
+		{
+			$query = $this->db->query("SELECT SUM(tb_kehadiran.IJIN) AS IJIN FROM tb_kehadiran INNER JOIN tb_siswa on tb_siswa.NIS = tb_kehadiran.NIS WHERE tb_kehadiran.KD_KEHADIRAN IN(SELECT MAX(KD_KEHADIRAN) FROM tb_kehadiran GROUP BY NIS)");
+	    			
+	    			$hasil = $query->result_array();
+	    			return $hasil[0]["IJIN"];
+		}
+
+		public function count_sakit()
+		{
+			$query = $this->db->query("SELECT SUM(tb_kehadiran.SAKIT) AS SAKIT FROM tb_kehadiran INNER JOIN tb_siswa on tb_siswa.NIS = tb_kehadiran.NIS WHERE tb_kehadiran.KD_KEHADIRAN IN(SELECT MAX(KD_KEHADIRAN) FROM tb_kehadiran GROUP BY NIS)");
+	    			
+	    			$hasil = $query->result_array();
+	    			return $hasil[0]["SAKIT"];
+		}
+
+		public function count_alpha()
+		{
+			$query = $this->db->query("SELECT IJIN, SUM(tb_kehadiran.ALPA) AS ALPA FROM tb_kehadiran INNER JOIN tb_siswa on tb_siswa.NIS = tb_kehadiran.NIS WHERE tb_kehadiran.KD_KEHADIRAN IN(SELECT MAX(KD_KEHADIRAN) FROM tb_kehadiran GROUP BY NIS)");
+	    			
+	    			$hasil = $query->result_array();
+	    			return $hasil[0]["ALPA"];
+		}
+
+		public function walsis_grafik($LAST_ABSEN)
+		{
+		$kueri = "SELECT Count(IJIN) FROM tb_kehadiran WHERE LAST_ABSEN = $LAST_ABSEN 
+		         GROUP BY NIS ";
+
+
+		//echo $kueri;
+		$query = $this->db->query($kueri);
+		$row = $query->result();
+		if (isset($row))
+        {
+			return $row;
+			//return TRUE;
+		}
+		else
+		 {
+			return FALSE;
+		}
+	}
+
+		
 
 
 
@@ -634,6 +704,27 @@ class Admin_model extends CI_Model
 			}
 		}
 
+		public function gender_p()
+	
+		{
+	
+
+			$kueri = "SELECT NM_KELAS, SUM(JENKEL='L') as LAKI, SUM(JENKEL = 'P') as PR FROM tb_siswa INNER JOIN tb_kelas on tb_siswa.KD_KELAS = tb_kelas.KD_KELAS
+			GROUP BY NM_KELAS ORDER BY NM_KELAS ASC";
+
+	      $query = $this->db->query($kueri);
+		$row = $query->result();
+		if (isset($row))
+        {
+			return $row;
+			//return TRUE;
+		}
+		else
+		 {
+			return FALSE;
+		}
+		}
+		
 		
         
 }

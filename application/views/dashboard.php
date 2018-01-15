@@ -1,10 +1,14 @@
+<script src="<?php echo base_url();?>assets/js/highcharts.js"></script>
+<script src="<?php echo base_url();?>assets/js/data.js"></script>
+<script src="<?php echo base_url();?>assets/js/exporting.js"></script>
+
 
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
                 <h2>DASHBOARD</h2>
             </div>
-
+ 
             <!-- Widgets -->
             <div class="row clearfix">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -54,7 +58,140 @@
                     </div>
                 </div>
             </div>
-            <!-- #END# Widgets -->
-            <!-- CPU Usage -->
-       
+
+<div id="container" style="width: 500px">
+
+<table id="datatable">
+    
+    <thead style="color: white">
+        <tr>
+        <tr>
+            <th>Masuk</th>
+            <td width="20%" style="text-align: center;"> <?php print_r($masuk);?> </td> 
+            </tr>
+            <th>Ijin</th>
+            <td width="20%" style="text-align: center;"> <?php print_r($ijin);?> </td> 
+            </tr>
+            <th>Sakit</th>
+            <td width="20%" style="text-align: center;"> <?php print_r($sakit);?> </td> 
+            </tr>
+            <th>Alpa</th>
+            <td width="20%" style="text-align: center;"> <?php print_r($alpa);?> </td> 
+            </tr>
+        </tr>
+
+
+    </thead>
+    
+</table>
+
+
+</div>
+<script>
+      Highcharts.chart('container', {
+    legend: {
+        labelFormatter: function() 
+        {
+            if(this.name!='Series 1')
+            {
+                return this.name;
+            }
+            else
+            {
+                return '';
+            }
+        }
+    },
+    data: {
+        table: 'datatable'
+    },
+    chart: {
+        type: 'pie'
+    },
+    title: {
+        text: '<?php echo hari();
+                     echo tanggal(); ?>'
+    },
+    yAxis: {
+        allowDecimals: false,
+        title: {
+            text: 'Jumlah Peserta'
+        }
+    },
+    tooltip: {
+        formatter: function () {
+            return '<b>' + this.point.y + '</b><br/>'+ this.point.name.toLowerCase();
+        }
+    }
+});
+ </script>
+ <div> keterangan </div>
+
+ <div id="container2" style="width: 500px">
+    <table id="datatable23">
+    
+    <thead>
+        <tr>
+        <tr>
+           
+             <?php foreach ($pr as $row):?>
+        <tr style="color: white">
+            <th><?php echo $row->NM_KELAS?> </th>
+            <td><?php echo $row->LAKI ?></td> 
+            <td><?php echo $row->PR ?></td>
+        </tr>
+
+         <?php endforeach; ?> 
+            
+            </tr>
+          
+        </tr>
+
+
+    </thead>
+    
+</table>
+
+
+</div>
+<script>
+      Highcharts.chart('container2', {
+    legend: {
+        labelFormatter: function() 
+        {
+            if(this.name!='Series 1')
+            {
+                return this.name;
+            }
+            else
+            {
+                return '';
+            }
+        }
+    },
+    data: {
+        table: 'datatable23'
+    },
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: ' Siswa SMK Telkom Malang Tahun <?php echo date('Y'); ?> '
+    },
+    yAxis: {
+        allowDecimals: false,
+        title: {
+            text: 'Jumlah Peserta'
+        }
+    },
+    tooltip: {
+        formatter: function () {
+            return '<b>' + this.point.y + '</b><br/>'+ this.point.name.toLowerCase();
+        }
+    }
+});
+ </script>
+<div> keterangan </div>
+</div>
+</div>
     </section>

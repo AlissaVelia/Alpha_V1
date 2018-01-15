@@ -10,6 +10,7 @@
     <link rel="icon" href="<?php echo base_url();?>assets/favicon.ico" type="image/x-icon">
     
     <!-- popup -->    
+    <!-- problem apabila ini di load maka template logout tidak akan keluar -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -292,7 +293,7 @@
                 </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                       Welcome <?php echo $this->session->userdata('NM_GURU');; ?>
+                       Wellcome <br> <?php echo $this->session->userdata('NM_GURU');; ?>
                     </div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
@@ -553,4 +554,4 @@
     <script src="<?php echo base_url();?>assets/js/demo.js"></script>
 </body>
 
-</html>f
+</html>

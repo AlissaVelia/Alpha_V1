@@ -309,22 +309,15 @@
                             <span>Home</span>
                         </a>
                     </li>
-                
-                  
-
-                    <!-- <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">trending_down</i>
-                            <span>Data Sekolah</span>
+                       
+                   <li>
+                        <a href="<?php echo base_url(); ?>index.php/siswa/detil">   
+                            <i class="material-icons">text_fields</i>
+                            <span>Detil </span>
                         </a>
-                        <ul class="ml-menu">
-                    
-                
-                        </ul>
                     </li>
-                    -->
-                    
-                </ul>
+                
+                  </ul>
             </div>
             <!-- #Menu -->
             <!-- Footer -->

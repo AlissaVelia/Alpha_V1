@@ -1,4 +1,4 @@
-<?php
+	<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dashboard extends CI_Controller {
@@ -8,23 +8,23 @@ class Dashboard extends CI_Controller {
 		$this->load->model('Admin_m');
 		$this->load->model('admin_model');
 		$this->load->model('siswa_model');
+		if($this->session->userdata('logged_in') == false){
+			redirect('siswa_login');
+		}
 	}
 
 	public function index()
 	{
 
-		if($this->session->userdata('logged_in') == TRUE){
-
-		$data['main_view'] = 'dashboard_siswa';		
-					
+		// $data['main_view'] = 'dashboard_siswa';		
 		$NIS = $this->session->userdata('NIS'); 
+		$data['NIS'] = $this->admin_model->read_kehadiran_siswa($NIS);
 		$data['list'] = $this->admin_model->count_kehadiran_siswa($NIS);
-		$this->load->view('template_siswa', $data);
-
-		}else{
-			redirect('siswa_login');
-		}
-
+		$data['hai'] = $this->admin_model->getdatasiswa($NIS);
+		$data['walsis'] = $this->admin_model->joinwalsis();
+		$data['kls'] = $this->admin_model->joinkelas();
+		$this->load->view('dashboard_siswa', $data);
+		// $this->load->view('template_siswa', $data);
 	}
 
 	public function masuk(){

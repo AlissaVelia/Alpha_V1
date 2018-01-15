@@ -27,7 +27,7 @@ class Data_siswa extends CI_Controller {
 
 	public function hapus()
 	{
-		$NIS = $this->input->get('rcgn');
+		$NIS = $this->uri->segment(4);
 		if($this->admin_model->delete_siswa($NIS) == TRUE)
 		{
 			$this->session->set_flashdata('notif', 'Hapus data berhasil');

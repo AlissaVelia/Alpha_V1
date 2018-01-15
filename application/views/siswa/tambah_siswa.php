@@ -13,15 +13,15 @@
                             </h2>
                           
                         </div>
-                        <div class="body">
-
-                            <?php
+                        
+                           <?php
                             if(!empty($notif))
                             {
                                 echo "<div class='alert alert-danger'>".$notif."</div>";
                             }
 
                             ?>
+                        <div class="body">
 
                             <form class="form-horizontal" action="<?php echo base_url();?>index.php/tambah/tambah_siswa/insert_siswa" method="post">
                                 <div class="row clearfix">
