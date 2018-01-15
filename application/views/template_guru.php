@@ -292,7 +292,7 @@
                 </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                       Wellcome <?php echo $this->session->userdata('NM_GURU');; ?>
+                       Welcome <?php echo $this->session->userdata('NM_GURU');; ?>
                     </div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>

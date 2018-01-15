@@ -9,9 +9,6 @@ class Siswa_model extends CI_Model {
     //Do your magic here
   }
 
-  public function tes(){
-  $tanggal = $this->db->select('LAST_ABSEN')->where('NIS', $NIS)->get('tb_kehadiran')->row();
-}
 
   public function masuk($NIS){
   $tanggalabsen = Date('Y') . "-" .Date('m'). "-".Date('d');
