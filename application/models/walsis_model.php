@@ -63,8 +63,30 @@ class Walsis_model extends CI_Model {
 		}
 	}	
 		}
+		else
+		 {
+
+		 	$data = array(
+			'KD_KEHADIRAN' => '',
+			'NIS' => $NIS,
+			'MASUK' => '0',
+			'IJIN' => '1',
+			'SAKIT' => '0',
+			'ALPA' => '0',
+  			'LAST_ABSEN'=> $Tanggalll);
+		$this->db->insert('tb_kehadiran', $data);
+			if($this->db->affected_rows() > 0)
+		{
+
+			return TRUE;
+		}
+		else {
+			return FALSE;
+		}
+	}	
+}
 	
-	public function update_sakit($NIS, $LAST_ABSEN)
+	public function tambah_sakit($NIS, $LAST_ABSEN)
 		{
 			
 			$Tanggalll = $this->input->post('LAST_ABSEN');
@@ -119,7 +141,7 @@ class Walsis_model extends CI_Model {
 	}	
 		}
 	
-	public function update_alpa($NIS, $LAST_ABSEN)
+	public function tambah_alpa($NIS, $LAST_ABSEN)
 		{
 			
 			$Tanggalll = $this->input->post('LAST_ABSEN');

@@ -59,7 +59,7 @@ class Kehadiran_siswa extends CI_Controller {
 			//$this->form_validation->set_rules('KD_GURU', 'Kode Guru', 'trim|required');	
 		 	//$this->form_validation->set_rules('LAST_ABSEN', 'LAST_ABSEN', 'trim|required');	
 				if( $this->input->post('kehadiran') == 'ijin' && 
-					$this->walsis_model->update_ijin($NIS, $LAST_ABSEN	) == TRUE)
+					$this->walsis_model->tambah_ijin($NIS, $LAST_ABSEN	) == TRUE)
 					{
 						$data['main_view'] = 'walisiswa/update_kehadiran_siswa';
 						$data['notif'] = 'berhasil';
@@ -67,7 +67,7 @@ class Kehadiran_siswa extends CI_Controller {
 						redirect('walisiswa/dashboard');
 					}
 					else if (  $this->input->post('kehadiran') == 'sakit' && 
-						$this->walsis_model->update_sakit($NIS, $LAST_ABSEN	) == TRUE)
+						$this->walsis_model->tambah_sakit($NIS, $LAST_ABSEN	) == TRUE)
 					{
 						$data['main_view'] = 'walisiswa/update_kehadiran_siswa';
 						$data['notif'] = 'berhasil';
@@ -76,7 +76,7 @@ class Kehadiran_siswa extends CI_Controller {
 					}
 
 					else if (  $this->input->post('kehadiran') == 'alpa' && 
-						$this->walsis_model->update_alpa($NIS, $LAST_ABSEN	) == TRUE)
+						$this->walsis_model->tambah_alpa($NIS, $LAST_ABSEN	) == TRUE)
 					{
 						$data['main_view'] = 'walisiswa/update_kehadiran_siswa';
 						$data['notif'] = 'berhasil';
