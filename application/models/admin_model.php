@@ -137,8 +137,8 @@ class Admin_model extends CI_Model
 			
 			$data = array(
 				//'KD_KELAS' => $this->input->post('KD_KELAS'),
-			'NM_KELAS' => $this->input->post('NM_KELAS'),
-			'JML_SISWA' => $this->input->post('JML_SISWA'));
+			'NM_KELAS' => $this->input->post('NM_KELAS'));
+			// 'JML_SISWA' => $this->input->post('JML_SISWA'));
 			$this->db->where('KD_KELAS', $KD_KELAS)
 					 ->update('tb_kelas', $data);
 					 

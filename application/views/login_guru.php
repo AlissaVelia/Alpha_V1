@@ -72,7 +72,7 @@
                                 <span class="input-group-addon">
                                     <i class="fa fa-lock"></i>
                                 </span>
-                                <input type="Password" name="NIK" placeholder="Password" autocomplete="off" class="form-control" />
+                                <input type="password" name="NIK" placeholder="Password" autocomplete="off" class="form-control" />
                             </div>
                         </div>
                         <div class="footer text-center">

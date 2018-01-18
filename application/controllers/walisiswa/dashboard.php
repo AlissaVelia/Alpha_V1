@@ -15,7 +15,6 @@ class Dashboard extends CI_Controller {
 		$KD_WALSIS = $this->session->userdata('KD_WALSIS'); 
 		$data['main_view'] = 'dashboard_walisiswa';		
 		$data['KD_WALSIS'] = $this->admin_model->read_siswa_walisiswa($KD_WALSIS);	
-
 		$data['ijin'] = $this->admin_model->count_ijin_walsis($KD_WALSIS);
 		$data['sakit'] = $this->admin_model->count_sakit_walsis($KD_WALSIS);
 		$data['alpa'] = $this->admin_model->count_alpa_walsis($KD_WALSIS);

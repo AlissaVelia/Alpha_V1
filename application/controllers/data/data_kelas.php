@@ -56,7 +56,6 @@ class Data_kelas extends CI_Controller {
 			{
 			// $this->form_validation->set_rules('KD_KELAS', 'KD_KELAS', 'trim|required');	
 		 	$this->form_validation->set_rules('NM_KELAS', 'NM_KELAS', 'trim|required');
-		 	$this->form_validation->set_rules('JML_SISWA', 'JML_SISWA', 'trim|required');
 			 			 	
 				
 				if($this->form_validation->run()==TRUE)

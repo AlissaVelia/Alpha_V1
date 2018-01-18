@@ -122,15 +122,27 @@
             <div class="container">
              
         <div class="section">
+        if (){
         <form class="form-horizontal" action="<?php echo base_url();?>index.php/siswa/dashboard/masuk" method="post">
                 <div class="button-container">
                     
                     <input type="submit" class="btn btn-primary btn-round btn-lg" rel="tooltip" title="Ayo Absen" value="Masuk" name="submit">
+
                     
                     
                 </div>
                 </form>
-                
+        } else {
+                <form class="form-horizontal" action="<?php echo base_url();?>index.php/siswa/dashboard/pulang" method="post">
+                <div class="button-container">
+                    
+                    <input type="submit" class="btn btn-primary btn-round btn-lg" rel="tooltip" title="Ayo Absen" value="Pulang" name="submit">
+                    
+                    
+                    
+                </div>
+                </form>
+        }
                  <h4 class="title text-center">About Me</h4>
                 <div class="row">
                     <div class="col-md-10 ml-auto mr-auto">
