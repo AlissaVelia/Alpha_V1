@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+           
+
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url();?>assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="<?php echo base_url();?>assets/images/logo.png">
@@ -44,7 +46,9 @@
     <meta property="og:image" content="http://s3.amazonaws.com/creativetim_bucket/products/56/original/opt_nuk_thumbnail.jpg" />
     <meta property="og:description" content="Start your development with a beautiful Bootstrap 4 UI kit. It is yours Free." />
     <meta property="og:site_name" content="Creative Tim" />
+   
 </head>
+            
 
 <body class="profile-page sidebar-collapse">
     <!-- Navbar -->
@@ -82,6 +86,18 @@
             </div>
             <div class="container">
                 <div class="content-center">
+                    <div>
+                         <?php
+                if ($this->session->flashdata('notifsiswa')) {
+                    # code...
+                    ?>
+                    <div class="alert alert-success">     
+                        <?php echo $this->session->flashdata('notifsiswa');?>
+                    </div>
+                <?php
+                }
+            ?>
+                    </div>
                     <div class="photo-container">
                         <img src="<?php echo base_url();?>assets/images/studen.png" alt="">
                     </div>
@@ -118,35 +134,39 @@
                 </div>
             </div>
         </div>
+<!-- nah iki cok seng nggatel -->
+            <div class="container">             
+                <div class="section">
 
-            <div class="container">
-             
-        <div class="section">
-        if (){
-        <form class="form-horizontal" action="<?php echo base_url();?>index.php/siswa/dashboard/masuk" method="post">
-                <div class="button-container">
-                    
-                    <input type="submit" class="btn btn-primary btn-round btn-lg" rel="tooltip" title="Ayo Absen" value="Masuk" name="submit">
+                    <?php
+                         date_default_timezone_set('Asia/Jakarta');
+                         // $ttime = strtotime('07:00');
+                         // $jammalam = date('H:i',$ttime);
+                         $jammasuk = "07:00:00";
+                         $jamnow = date('H:i');
+                        if ($jamnow <= $jammasuk){
+                    ?>
+                    <form class="form-horizontal" action="<?php echo base_url();?>index.php/siswa/dashboard/masuk" method="post">
+                        <div class="button-container">
+                            <input type="submit" class="btn btn-primary btn-round btn-lg" rel="tooltip" title="Ayo Absen" value="Masuk" name="submit">
+                        </div>
+                    </form>
+                    <?php
+                        ;}else{
+                    ?>
+                    <form class="form-horizontal" action="<?php echo base_url();?>index.php/siswa/dashboard/pulang" method="post">
+                        <div class="button-container">
+                            <input type="submit" class="btn btn-primary btn-round btn-lg" rel="tooltip" title="Mari Pulang" value="Pulang" name="submit">
+                        </div>
+                    </form>
+                    <?php }?>
 
-                    
-                    
-                </div>
-                </form>
-        } else {
-                <form class="form-horizontal" action="<?php echo base_url();?>index.php/siswa/dashboard/pulang" method="post">
-                <div class="button-container">
-                    
-                    <input type="submit" class="btn btn-primary btn-round btn-lg" rel="tooltip" title="Ayo Absen" value="Pulang" name="submit">
-                    
-                    
-                    
-                </div>
-                </form>
-        }
-                 <h4 class="title text-center">About Me</h4>
+<!-- end of nggateli -->
+                
+                <h4 class="title text-center">About Me</h4>
                 <div class="row">
                     <div class="col-md-10 ml-auto mr-auto">
-                    <div class="card">
+                        <div class="card">
                                 <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="orange">
                                     <li class="nav-item">
                                         <a class="nav-link active" data-toggle="tab" href="#home1" role="tab">Home</a>
@@ -154,31 +174,28 @@
                                     <li class="nav-item">
                                         <a class="nav-link" data-toggle="tab" href="#profile1" role="tab">Profile</a>
                                     </li>
-                                    
                                 </ul>
                                 <div class="card-body">
-                                    <!-- Tab panes -->
-                                    <div class="tab-content text-center">
-                                        <div class="tab-pane active" id="home1" role="tabpanel">
-                                            <div class="home">
-                              <table class="table table-bordered table-striped table-hover dataTable js-exportable">
-                                      <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>NIS </th>
-                                    <th>Nama</th>
-                                    <th>Tanggal</th>
-                                    <th>Ijin</th>
-                                    <th>Sakit</th>
-                                    <th>Alpha</th>
-                              
-
-                                </tr>
-                            </thead>
-
-                                <!-- untuk menampilkan data ke halaman dari database -->
-                            <tbody>       <?php $no = 1;?>
-                        <?php foreach ($NIS as $row):?>
+            <!-- Tab panes -->
+            <div class="tab-content text-center">
+                <div class="tab-pane active" id="home1" role="tabpanel">
+                    <div class="home">
+                    <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>NIS </th>
+                                <th>Nama</th>
+                                <th>Tanggal</th>
+                                <th>Ijin</th>
+                                <th>Sakit</th>
+                                <th>Alpha</th>
+                            </tr>
+                        </thead>
+                    <!-- untuk menampilkan data ke halaman dari database -->
+                        <tbody>       
+                            <?php $no = 1;?>
+                            <?php foreach ($NIS as $row):?>
                             <tr>
                                 <td><?php echo $no ?></td>
                                 <td><?php echo $row->NIS?></td>
@@ -187,22 +204,15 @@
                                 <td ><?php echo $row->IJIN ?></td>
                                 <td ><?php echo $row->SAKIT ?></td>
                                 <td ><?php echo $row->ALPA ?></td>
-                                
-                                </td>
-                                 
-                          
-                                
                             </tr>
                             <?php $no++; ?>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
                         </tbody>
-                                </table>
-                             
-                                
-                            </div>
-                                        </div>
-                                        <div class="tab-pane" id="profile1" role="tabpanel">
-                                            <div class="col-sm-12 col-lg-12">
+                    </table>
+                        
+                        </div></div>
+                        <div class="tab-pane" id="profile1" role="tabpanel">
+                            <div class="col-sm-12 col-lg-12">
                                 <div class="form-group" style="text-align: center">
                                    <p>NIS : </p> <input type="text" value="<?php echo $hai->NIS; ?>" placeholder="" class="form-control" disabled />
                                    <p>Nama Wali Siswa : </p> <input type="text" value="<?php echo $hai->KD_WALSIS ; ?>" placeholder="" class="form-control" disabled />
@@ -216,94 +226,12 @@
                                    <p>Nama Ibu : </p> <input type="text" value="<?php echo $hai->NM_IBU; ?>" placeholder="" class="form-control" disabled />
                                    <p>Jenis Kelamin : </p> <input type="text" value="<?php echo $hai->JENKEL; ?>" placeholder="" class="form-control" disabled />
                                 </div>
+                            </div>
+                        </div></div></div>
 
-                              
-                                  
-                                
-                  
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                    
-                        <!-- <!-- <!-- <h4 class="title text-center">My Portfolio</h4>
-                       
-                    </div>
-                    <!-- Tab panes
-                    <div class="tab-content gallery">
-                        <div class="tab-pane active" id="home" role="tabpanel">
-                            <div class="col-md-10 ml-auto mr-auto">
-                                <div class="row collections">
-                                    <div class="col-md-6">
-                                        <img src="<?php echo base_url();?>assets/img/bg1.jpg" alt="" class="img-raised">
-                                        <img src="<?php echo base_url();?>assets/img/bg3.jpg" alt="" class="img-raised">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="<?php echo base_url();?>assets/img/bg8.jpg" alt="" class="img-raised">
-                                        <img src="<?php echo base_url();?>assets/img/bg7.jpg" alt="" class="img-raised">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="profile" role="tabpanel">
-                            <div class="col-md-10 ml-auto mr-auto">
-                                <div class="row collections">
-                                    <div class="col-md-6">
-                                        <img src="<?php echo base_url();?>assets/img/bg6.jpg" class="img-raised">
-                                        <img src="<?php echo base_url();?>assets/img/bg11.jpg" alt="" class="img-raised">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="<?php echo base_url();?>assets/img/bg7.jpg" alt="" class="img-raised">
-                                        <img src="<?php echo base_url();?>assets/img/bg8.jpg" alt="" class="img-raised">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="messages" role="tabpanel">
-                            <div class="col-md-10 ml-auto mr-auto">
-                                <div class="row collections">
-                                    <div class="col-md-6">
-                                        <img src="<?php echo base_url();?>assets/img/bg3.jpg" alt="" class="img-raised">
-                                        <img src="<?php echo base_url();?>assets/img/bg8.jpg" alt="" class="img-raised">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="<?php echo base_url();?>assets/img/bg7.jpg" alt="" class="img-raised">
-                                        <img src="<?php echo base_url();?>assets/img/bg6.jpg" class="img-raised">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --> 
         <footer class="footer footer-default">
             <div class="container">
-                <!-- <nav>
-                    <ul>
-                        <li>
-                            <a href="https://www.creative-tim.com">
-                                Creative Tim
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://presentation.creative-tim.com">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://blog.creative-tim.com">
-                                Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">
-                                MIT License
-                            </a>
-                        </li>
-                    </ul>
-                </nav> -->
+                
                 <div class="copyright">
                     &copy;
                     <script>

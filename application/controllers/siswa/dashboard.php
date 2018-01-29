@@ -23,6 +23,7 @@ class Dashboard extends CI_Controller {
 		$data['hai'] = $this->admin_model->getdatasiswa($NIS);
 		$data['walsis'] = $this->admin_model->joinwalsis();
 		$data['kls'] = $this->admin_model->joinkelas();
+		$data['notifsiswa'] = 'Anda Berhasil Absen!';
 		$this->load->view('dashboard_siswa', $data);
 		// $this->load->view('template_siswa', $data);
 	}
@@ -36,23 +37,39 @@ class Dashboard extends CI_Controller {
 		$NIS = $this->session->userdata('NIS');
 			if($this->siswa_model->masuk($NIS) == TRUE)
 				{
-						
-					$data['notif'] = 'Anda Berhasil Absen!';
+					$this->session->set_flashdata('notifsiswa','Anda Berhasil Absen! ');
 					redirect('siswa/dashboard');
 				}
 				else
 				{
-					$data['notif'] = 'Anda Sudah Absen Hari Ini!';
+					$this->session->set_flashdata('notifsiswa', 'Anda Sudah Absen Hari Ini! ');
 					redirect('siswa/dashboard');
 				}
-
-		
-		
-		
 		}
-		}
-		
 	}
+
+	public function pulang(){
+			
+
+		if($this->input->post('submit'))
+		{
+		
+		$NIS = $this->session->userdata('NIS');
+			if($this->siswa_model->pulang($NIS) == TRUE)
+				{
+						
+					$this->session->set_flashdata('notifsiswa','Anda Berhasil Pulang! ');
+					redirect('siswa/dashboard');
+				}
+				else
+				{
+					$this->session->set_flashdata('notifsiswa','Anda Sudah Pulang Sebelumnya! ');
+					redirect('siswa/dashboard');
+				}
+		}
+	}
+		
+}
 
 
 

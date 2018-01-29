@@ -48,6 +48,7 @@ class Admin_model extends CI_Model
 	public function getdatasiswa($NIS)
 	{
 		return $this->db->where('NIS', $NIS)->get('tb_siswa')->row();
+		
 	}
 	public function insert_kelas()
 	{
@@ -724,6 +725,7 @@ class Admin_model extends CI_Model
 				return FALSE;
 			}
 		}
+		
 
 		public function gender_p()
 	
