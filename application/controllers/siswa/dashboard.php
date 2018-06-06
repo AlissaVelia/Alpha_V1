@@ -57,9 +57,9 @@ class Dashboard extends CI_Controller {
 		$NIS = $this->session->userdata('NIS');
 			if($this->siswa_model->pulang($NIS) == TRUE)
 				{
-						
 					$this->session->set_flashdata('notifsiswa','Anda Berhasil Pulang! ');
 					redirect('siswa/dashboard');
+
 				}
 				else
 				{

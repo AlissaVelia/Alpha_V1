@@ -9,7 +9,7 @@
                                 LAPORAN SIKAP SISWA
                                    </h2>
                                 <br>
-                 <a href="<?php echo base_url('index.php/laporan/laporan_sikap/del_riwayat');?>" class="btn btn-success" style="float: right;margin-top: -60px" onclick="return confirm('Apakah anda ingin menghapus semua riwayat ?')">HAPUS RIWAYAT</a>
+                 <!-- <a href="<?php echo base_url('index.php/laporan/laporan_sikap/del_riwayat');?>" class="btn btn-success" style="float: right;margin-top: -60px" onclick="return confirm('Apakah anda ingin menghapus semua riwayat ?')">HAPUS RIWAYAT</a> -->
                 <!-- alert tambah sikap -->
                 <?php
                 if ($this->session->flashdata('addsikap')) {

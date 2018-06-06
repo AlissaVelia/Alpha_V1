@@ -8,7 +8,16 @@
             <div class="block-header">
                 <h2>DASHBOARD</h2>
             </div>
- 
+                <?php
+                if ($this->session->flashdata('notifsiswa')) {
+                    # code...
+                    ?>
+                    <div class="alert alert-success">     
+                        <?php echo $this->session->flashdata('notifsiswa');?>
+                    </div>
+                <?php
+                }
+            ?>
             <!-- Widgets -->
             <div class="row clearfix">
                 <!-- <a href="<?php echo base_url('index.php/kurikulum/dashboard/del_riwayat');?>" class="btn btn-success" style="float: right;margin-top: -60px">HAPUS RIWAYAT</a> -->
@@ -59,17 +68,34 @@
                     </div>
                 </div>
             </div>
+ 
+                <!-- Visitors -->
+                    <div style="text-align: center">
+                         <a href="<?php echo base_url('index.php/kurikulum/dashboard/absen');?>" class="btn btn-success waves-effect" style="width: 150px; height: 60px;padding: 16px" center>
+                         <i class="material-icons">file_download</i>
+                         <span>MASUK</span>
+                         </a>
+                         <a href="<?php echo base_url('index.php/kurikulum/dashboard/pulang');?>" class="btn btn-success waves-effect" style="width: 150px; height: 60px;padding: 16px" center> 
+                         <i class="material-icons">file_upload</i>
+                         <span>PULANG</span>
+                         </a>
+                    </div>
 
+
+             
+              <br>
 <div class="row clearfix">
                 <!-- Task Info -->
-                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
                     <div class="card">
                        
                         <div class="body">
                             <div class="table-responsive">
-                                                    <div id="container" style="width: 500px">
+                             <div id="container" style="width: 500px">
 
-<table id="datatable">
+                   
+
+<table id="datatable" style="text-align: center;">
     
     <thead style="color: white">
         <tr>
@@ -94,7 +120,16 @@
 </table>
 
 
+
+
 </div>
+
+                      </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
 <script>
       Highcharts.chart('container', {
     legend: {
@@ -114,7 +149,7 @@
         table: 'datatable'
     },
     chart: {
-        type: 'pie'
+        type: 'column'
     },
     title: {
         text: '<?php echo hari();
@@ -123,7 +158,7 @@
     yAxis: {
         allowDecimals: false,
         title: {
-            text: 'Jumlah Peserta'
+            text: 'Jumlah Siswa'
         }
     },
     tooltip: {
@@ -133,7 +168,9 @@
     }
 });
  </script>
-                                 <div id="container2"">
+
+
+    <div id="container2"">
     <table id="datatable23">
     
     <thead>
@@ -187,7 +224,7 @@
     yAxis: {
         allowDecimals: false,
         title: {
-            text: 'Jumlah Peserta'
+            text: 'Jumlah Siswa'
         }
     },
     tooltip: {
@@ -198,9 +235,9 @@
 });
  </script>
 
+   
                             </div>
-                            <div style="text-align: center;">Keterangan : <img src="assets/images/1.jpg" alt="icon" /> </div>
-                        </div>
+                              </div>
                     </div>
                 </div>
                 <!-- #END# Task Info -->
@@ -216,3 +253,5 @@
                 <!-- #END# Browser Usage -->
             </div>
     </section>
+
+ 

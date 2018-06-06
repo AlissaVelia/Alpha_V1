@@ -6,6 +6,7 @@ class Dashboard extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('admin_model');
+		$this->load->model('siswa_model');
 	}
 
 	 public function index()
@@ -30,6 +31,36 @@ class Dashboard extends CI_Controller {
 		else{
 			redirect('Admin');
 		}
+	}
+
+	public function absen()
+	{
+		$absen = $this->siswa_model->absen();
+			if( $absen == FALSE)
+				{
+					$this->session->set_flashdata('notifsiswa','Semua Siswa Sudah Absen! ');
+					redirect('kurikulum/dashboard');
+				}
+				else
+				{
+					$this->session->set_flashdata('notifsiswa', 'Mengabsenkan '.$absen.' Siswa');
+					redirect('kurikulum/dashboard');
+				}
+	}
+
+	public function pulang()
+	{
+			$absen = $this->siswa_model->pulangg();
+			if( $absen == FALSE)
+				{
+					$this->session->set_flashdata('notifsiswa','Semua Siswa Sudah Absen Pulang! ');
+					redirect('kurikulum/dashboard');
+				}
+				else
+				{
+					$this->session->set_flashdata('notifsiswa', $absen.' Siswa Telah Diabsenkan Pulang');
+					redirect('kurikulum/dashboard');
+				}
 	}
 }
 

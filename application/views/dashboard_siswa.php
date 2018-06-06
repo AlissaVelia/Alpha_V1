@@ -134,7 +134,7 @@
                 </div>
             </div>
         </div>
-<!-- nah iki cok seng nggatel -->
+<!--  -->
             <div class="container">             
                 <div class="section">
 
@@ -152,7 +152,7 @@
                         </div>
                     </form>
                     <?php
-                        ;}else{
+                        ;} else {
                     ?>
                     <form class="form-horizontal" action="<?php echo base_url();?>index.php/siswa/dashboard/pulang" method="post">
                         <div class="button-container">
@@ -161,7 +161,7 @@
                     </form>
                     <?php }?>
 
-<!-- end of nggateli -->
+<!-- end of  -->
                 
                 <h4 class="title text-center">About Me</h4>
                 <div class="row">
